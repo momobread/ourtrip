@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${textNoto.className} grid h-dvh min-h-screen w-screen grid-rows-[10rem_15rem_1fr_30rem] antialiased`}
+        className={`${textNoto.className} grid min-h-screen w-full grid-rows-[10rem_15rem_1fr_30rem] antialiased`}
       >
         <Header />
         <MainNav />
