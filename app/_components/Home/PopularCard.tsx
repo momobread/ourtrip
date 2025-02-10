@@ -9,7 +9,6 @@ interface PopularCardType {
 
 const PopularCard = ({ img, title, size }: PopularCardType): JSX.Element => {
   //제주도 부산 인천  서울 경주 대구
-  size === 'medium';
 
   return (
     <li

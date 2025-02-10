@@ -14,12 +14,13 @@ const SideNav = () => {
   const handleFilter = ({ value }: { value: string }) => {
     const params = new URLSearchParams(searchParams);
     params.set('filter', value);
+    params.set('page', '1');
     router.replace(`${pathname}?${params.toString()}`, {
       scroll: false,
     });
   };
   return (
-    <div className="flex w-[85%] justify-end">
+    <div>
       <ul className="flex h-[5rem] items-center gap-4 rounded-xl bg-grey-200">
         <li
           onClick={() => handleFilter({ value: 'low_price' })}
