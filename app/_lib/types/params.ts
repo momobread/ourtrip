@@ -1,4 +1,4 @@
-import { ProductType } from './product';
+import { ProductType } from '@/app/_lib/types/product';
 
 interface FetchProductsType {
   filter: string;

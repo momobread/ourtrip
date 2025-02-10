@@ -9,4 +9,9 @@ interface ProductType {
   product_created_at: Date;
 }
 
-export type { ProductType };
+interface PreImgProductType {
+  title: string;
+  url: string;
+}
+
+export type { ProductType, PreImgProductType };

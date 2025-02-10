@@ -17,7 +17,8 @@ export const fetchCarousel = async () => {
     });
     return response.data?.[0]?.carousel?.carousel;
   } catch (e) {
-    return e.message;
+    if (e instanceof Error) return e;
+    else throw new Error('캐러셀 이미지 로딩 실패');
   }
 };
 
@@ -36,6 +37,7 @@ export const fetchPopularCard = async () => {
     const data = response.data?.[0];
     return data;
   } catch (e) {
-    return e.message;
+    if (e instanceof Error) return e;
+    else throw new Error('홈 쇼케이스 이미지 로딩 실패');
   }
 };

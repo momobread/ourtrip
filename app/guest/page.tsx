@@ -15,7 +15,7 @@ const page = async ({ searchParams }: pageProps) => {
   console.log(typeof currentPage);
   const { productData, totalItems, totalPages } = await fetchProducts({
     filter,
-    category: '1', //큰 카테코리
+    category: '3', //큰 카테코리
     itemPerPage, //보여줄 갯수
     currentPage, //현재페이지
   });

@@ -9,25 +9,46 @@ const NaviButtonStyle = `
      inline-block size-[4rem] p-[1rem]
 `;
 
-const ProductPageNation = ({ pages }) => {
+interface ProductPageNationProps {
+  pages: number;
+}
+
+const ProductPageNation = ({ pages }: ProductPageNationProps) => {
   const pageList = Array.from({ length: pages }, (_, i) => {
     return i;
   });
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
+  const activeNavigateion = searchParams.get('page') ?? '1';
 
-  const handleButton = (page) => {
+  const handleButton = (page: number) => {
     const params = new URLSearchParams(searchParams);
-    params.set('page', page);
+    params.set('page', `${page}`);
     router.replace(`${pathname}?${params.toString()}`, {
       scroll: false,
     });
   };
 
+  const handleNextButton = () => {
+    const currentPage = Number(searchParams.get('page'));
+    if (currentPage === pages) return;
+
+    const params = new URLSearchParams(searchParams);
+    params.set('page', `${currentPage + 1}`);
+    router.replace(`${pathname}?${params.toString()}`);
+  };
+  const handlePreButton = () => {
+    const currentPage = Number(searchParams.get('page'));
+    if (currentPage === 1) return;
+
+    const params = new URLSearchParams(searchParams);
+    params.set('page', `${currentPage - 1}`);
+    router.replace(`${pathname}?${params.toString()}`);
+  };
   return (
-    <div className="mb-[20rem] flex gap-[0.5rem] bg-slate-300">
-      <button>
+    <div className="mb-[20rem] flex gap-[0.5rem]">
+      <button onClick={handlePreButton}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -40,26 +61,16 @@ const ProductPageNation = ({ pages }) => {
         </svg>
       </button>
       {pageList.map((v) => (
-        <a key={v + 1} className={`${PageButtonStyle}`} onClick={() => handleButton(v + 1)}>
+        <a
+          key={v + 1}
+          className={`${PageButtonStyle} ${Number(activeNavigateion) === v + 1 ? 'bg-accent-300' : ''}`}
+          onClick={() => handleButton(v + 1)}
+        >
           {v + 1}
         </a>
       ))}
-      {/* <a className={`${PageButtonStyle}`} onClick={() => handleButton(1)}>
-        1
-      </a>
-      <a className={`${PageButtonStyle}`} onClick={() => handleButton(2)}>
-        2
-      </a>
-      <a className={`${PageButtonStyle}`} onClick={() => handleButton(3)}>
-        3
-      </a>
-      <a className={`${PageButtonStyle}`} onClick={() => handleButton(4)}>
-        4
-      </a>
-      <a className={`${PageButtonStyle}`} onClick={() => handleButton(5)}>
-        5
-      </a> */}
-      <button>
+
+      <button onClick={handleNextButton}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

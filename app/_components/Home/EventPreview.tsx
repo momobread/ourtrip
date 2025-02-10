@@ -1,5 +1,6 @@
 import { JSX } from 'react';
-import EventCard from './EventCard';
+
+import EventCard from '@/app/_components/Home/EventCard';
 
 const EventPrivew = (): JSX.Element => {
   return (

@@ -7,7 +7,7 @@ const SideNav = () => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const activeFilter = searchParams.get('filter') ?? 'all';
+  const activeFilter = searchParams.get('filter') ?? 'low_price';
   const activestyle = `font-bold text-primary-400 border-b-4 border-primary-400`;
   const filterstyle = `w-[15rem] text-center text-[2rem] p-[0.9rem]`;
 

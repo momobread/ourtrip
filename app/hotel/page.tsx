@@ -1,20 +1,35 @@
-import ProductList from '../_components/product/ProductList';
-import SideNav from '../_components/product/SideNav';
-import GooleMapFilter from '../_components/product/GooleMapFilter';
-import { usePathname } from 'next/navigation';
-import Loader from '../_components/Loader';
-import { fetchProducts } from '../_lib/product';
+import ProductList from '@/app/_components/product/ProductList';
+import ProductOptions from '@/app/_components/product/ProductOptions';
+import ProductPageNation from '@/app/_components/product/ProductPageNation';
+import SideNav from '@/app/_components/product/SideNav';
+import { fetchProducts } from '@/app/_lib/api/product';
 
-const page = async ({ searchParams }) => {
-  const filter = (await searchParams).filter ?? 'all';
-  const productData = await fetchProducts({ filter: filter, category: 1 });
-  console.log(productData);
+interface pageProps {
+  searchParams: Record<string, string>;
+}
+
+const page = async ({ searchParams }: pageProps) => {
+  console.log('싣작');
+  const filter = searchParams.filter ?? 'low_price';
+  const currentPage = searchParams.page ?? '1';
+  const itemPerPage = searchParams.count ?? '12';
+  const { productData, totalItems, totalPages } = await fetchProducts({
+    filter,
+    category: '2', //큰 카테코리
+    itemPerPage, //보여줄 갯수
+    currentPage, //현재페이지
+  });
   return (
     <section className="h-full">
       <div className="flex flex-col items-center">
         {/* 지도필터 먼저 띄우고, 서울을 기준으로 안내, 그리고 버튼 누르면 내위치 기준으로 안내 */}
-        <SideNav />
+        <div className="flex w-[90%] flex-col items-end bg-slate-200">
+          <ProductOptions />
+          <SideNav />
+        </div>
+        <div className="mt-[5rem] w-[90%]">검색결과 : {totalItems}개</div>
         <ProductList productData={productData} />
+        <ProductPageNation pages={totalPages} />
       </div>
     </section>
   );

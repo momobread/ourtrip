@@ -7,26 +7,27 @@ const ProductOptions = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
-  const activeFilter = searchParams.get('count') ?? '5';
+  const activeFilter = searchParams.get('count') ?? '12';
 
   const handleFilter = (count: string) => {
     const params = new URLSearchParams(searchParams);
     params.set('count', count);
+    params.set('page', '1');
     router.replace(`${pathname}?${params.toString()}`);
   };
   return (
     <div className="flex gap-5 px-[2rem] py-[1rem]">
       <button
-        onClick={() => handleFilter('5')}
-        className={`text-[2rem] ${activeFilter === '5' ? 'font-extrabold text-primary-200' : ''}`}
+        onClick={() => handleFilter('12')}
+        className={`text-[2rem] ${activeFilter === '12' ? 'font-extrabold text-primary-200' : ''}`}
       >
-        5개씩 보기
+        12개씩 보기
       </button>
       <button
-        onClick={() => handleFilter('10')}
-        className={`text-[2rem] ${activeFilter === '10' ? 'font-extrabold text-primary-200' : ''}`}
+        onClick={() => handleFilter('16')}
+        className={`text-[2rem] ${activeFilter === '16' ? 'font-extrabold text-primary-200' : ''}`}
       >
-        10개씩 보기
+        16개씩 보기
       </button>
       <button
         onClick={() => handleFilter('20')}

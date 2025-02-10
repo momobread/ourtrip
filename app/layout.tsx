@@ -1,11 +1,10 @@
 import type { Metadata } from 'next';
-import { Sunflower, Noto_Sans_KR } from 'next/font/google';
+import { Noto_Sans_KR } from 'next/font/google';
 
 import '@/app/_styles/globals.css';
+import Footer from '@/app/_components/layout/Footer';
 import Header from '@/app/_components/layout/Header';
-import Nav from '@/app/_components/layout/MainNav';
 import MainNav from '@/app/_components/layout/MainNav';
-import Footer from './_components/layout/Footer';
 
 const textNoto = Noto_Sans_KR({
   subsets: ['latin'],
