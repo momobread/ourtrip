@@ -9,7 +9,10 @@ const NaviButtonStyle = `
      inline-block size-[4rem] p-[1rem]
 `;
 
-const ProductPageNation = () => {
+const ProductPageNation = ({ pages }) => {
+  const pageList = Array.from({ length: pages }, (_, i) => {
+    return i;
+  });
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -36,7 +39,12 @@ const ProductPageNation = () => {
           <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
         </svg>
       </button>
-      <a className={`${PageButtonStyle}`} onClick={() => handleButton(1)}>
+      {pageList.map((v) => (
+        <a key={v + 1} className={`${PageButtonStyle}`} onClick={() => handleButton(v + 1)}>
+          {v + 1}
+        </a>
+      ))}
+      {/* <a className={`${PageButtonStyle}`} onClick={() => handleButton(1)}>
         1
       </a>
       <a className={`${PageButtonStyle}`} onClick={() => handleButton(2)}>
@@ -50,7 +58,7 @@ const ProductPageNation = () => {
       </a>
       <a className={`${PageButtonStyle}`} onClick={() => handleButton(5)}>
         5
-      </a>
+      </a> */}
       <button>
         <svg
           xmlns="http://www.w3.org/2000/svg"

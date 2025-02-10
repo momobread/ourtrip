@@ -1,6 +1,10 @@
+'use client';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const MainNav = () => {
+  const activePath = usePathname().split('/')?.[1] ?? '/';
+  console.log(activePath);
   return (
     <nav className="flex items-center justify-center gap-14">
       <Link href="/motel">
@@ -11,7 +15,7 @@ const MainNav = () => {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="size-24 text-primary-300 hover:text-primary-100"
+            className={`size-24 hover:text-primary-100 ${activePath === 'motel' ? 'text-primary-200' : 'text-gray-300'}`}
           >
             <path
               strokeLinecap="round"
@@ -19,7 +23,11 @@ const MainNav = () => {
               d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205 3 1m1.5.5-1.5-.5M6.75 7.364V3h-3v18m3-13.636 10.5-3.819"
             />
           </svg>
-          <span className="text-[2rem] font-bold text-primary-200">모텔</span>
+          <span
+            className={`text-[2rem] font-bold ${activePath === 'motel' ? 'text-primary-200' : 'text-gray-300'}`}
+          >
+            모텔
+          </span>
         </li>
       </Link>
       <Link href="/hotel">
@@ -30,7 +38,7 @@ const MainNav = () => {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="size-24 text-primary-300 hover:text-primary-100"
+            className={`size-24 hover:text-primary-100 ${activePath === 'hotel' ? 'text-primary-200' : 'text-gray-300'}`}
           >
             <path
               strokeLinecap="round"
@@ -38,7 +46,11 @@ const MainNav = () => {
               d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z"
             />
           </svg>
-          <span className="text-[2rem] font-bold text-primary-200">호텔</span>
+          <span
+            className={`text-[2rem] font-bold ${activePath === 'hotel' ? 'text-primary-200' : 'text-gray-300'}`}
+          >
+            호텔
+          </span>
         </li>
       </Link>
       <Link href="/guest">
@@ -49,7 +61,7 @@ const MainNav = () => {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="size-24 text-primary-300 hover:text-primary-100"
+            className={`size-24 hover:text-primary-100 ${activePath === 'guest' ? 'text-primary-200' : 'text-gray-300'}`}
           >
             <path
               strokeLinecap="round"
@@ -58,18 +70,22 @@ const MainNav = () => {
             />
           </svg>
 
-          <span className="text-[2rem] font-bold text-primary-200">게스트하우스</span>
+          <span
+            className={`text-[2rem] font-bold ${activePath === 'guest' ? 'text-primary-200' : 'text-gray-300'}`}
+          >
+            게스트하우스
+          </span>
         </li>
       </Link>
       <Link href="/leisure">
-        <li className="flex flex-col items-center justify-center">
+        <li className="flex flex-col items-center justify-center p-[1rem] hover:rounded-lg hover:bg-primary-100">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="size-24 text-primary-300 hover:text-primary-100"
+            className={`size-24 ${activePath === 'leisure' ? 'text-primary-100' : 'text-gray-300'}`}
           >
             <path
               strokeLinecap="round"
@@ -78,7 +94,11 @@ const MainNav = () => {
             />
           </svg>
 
-          <span className="text-[2rem] font-bold text-primary-200">레저</span>
+          <span
+            className={`hover:text- text-[2rem] font-bold ${activePath === 'leisure' ? 'text-primary-200' : 'text-gray-300'}`}
+          >
+            레저
+          </span>
         </li>
       </Link>
       <Link href="/activity">
@@ -89,7 +109,7 @@ const MainNav = () => {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="size-24 text-primary-300 hover:text-grey-400 hover:text-primary-100"
+            className={`size-24 hover:text-primary-100 ${activePath === 'activity' ? 'text-primary-100' : 'text-gray-300'}`}
           >
             <path
               strokeLinecap="round"
@@ -98,7 +118,11 @@ const MainNav = () => {
             />
           </svg>
 
-          <span className="text-[2rem] font-bold text-primary-200">공연/축제</span>
+          <span
+            className={`text-[2rem] font-bold ${activePath === 'activity' ? 'text-primary-200' : 'text-gray-300'}`}
+          >
+            공연/축제
+          </span>
         </li>
       </Link>
     </nav>

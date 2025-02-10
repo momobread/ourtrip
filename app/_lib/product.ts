@@ -1,9 +1,16 @@
 import axios from 'axios';
 
+import { FetchProductsReturnType, type FetchProductsType } from '@/app/_lib/types/params';
+
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_KEY;
 
-const fetchProducts = async ({ filter, category, itemPerPage, currentPage }) => {
+const fetchProducts = async ({
+  filter,
+  category,
+  itemPerPage,
+  currentPage,
+}: FetchProductsType): Promise<FetchProductsReturnType> => {
   // await new Promise((res) => setTimeout(res, 3000));
 
   let filterOption;
@@ -23,8 +30,8 @@ const fetchProducts = async ({ filter, category, itemPerPage, currentPage }) => 
       params: {
         product_category: `eq.${category}`,
         order: `${filterOption}`,
-        limit: itemPerPage,
-        offset: (currentPage - 1) * itemPerPage,
+        limit: Number(itemPerPage),
+        offset: (Number(currentPage) - 1) * Number(itemPerPage),
       },
     });
 
@@ -40,7 +47,7 @@ const fetchProducts = async ({ filter, category, itemPerPage, currentPage }) => 
       },
     });
     const totalItems = countResponse?.data[0]?.count || 0;
-    const totalPages = Math.ceil(totalItems / itemPerPage);
+    const totalPages = Math.ceil(totalItems / Number(itemPerPage));
 
     return {
       productData: response?.data,
@@ -48,7 +55,11 @@ const fetchProducts = async ({ filter, category, itemPerPage, currentPage }) => 
       totalPages,
     };
   } catch (e) {
-    console.log(e);
+    if (e instanceof Error) {
+      throw e;
+    } else {
+      throw new Error(`상품페치에 실패하였습니다`);
+    }
   }
 };
 

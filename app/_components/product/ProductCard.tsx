@@ -1,6 +1,8 @@
 import Image from 'next/image';
 
-const ProductCard = ({ data }: { data: any }) => {
+import { ProductType } from '@/app/_lib/types/product';
+
+const ProductCard = ({ data }: { data: ProductType }) => {
   // console.log(data);
   const { product_content, product_liked, product_name, product_price, product_img } = data;
   // console.log(product_category);
