@@ -1,14 +1,13 @@
 'use client';
 import Link from 'next/link';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 const MainNav = () => {
   const activePath = usePathname().split('/')?.[1] ?? '/';
 
   return (
     <nav className="flex items-center justify-center gap-14">
-      <Link href="/motel?page=1&filter=low_price&count=5">
+      <Link href="/motel?page=1&filter=low_price&count=12">
         <li className="flex flex-col items-center justify-center p-[1rem] hover:rounded-lg hover:bg-grey-100">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +30,7 @@ const MainNav = () => {
           </span>
         </li>
       </Link>
-      <Link href="/hotel?page=1&filter=low_price&count=5">
+      <Link href="/hotel?page=1&filter=low_price&count=12">
         <li className="flex flex-col items-center justify-center p-[1rem] hover:rounded-lg hover:bg-grey-100">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +53,7 @@ const MainNav = () => {
           </span>
         </li>
       </Link>
-      <Link href="/guest">
+      <Link href="/guest?page=1&filter=low_price&count=12">
         <li className="flex flex-col items-center justify-center p-[1rem] hover:rounded-lg hover:bg-grey-100">
           <svg
             xmlns="http://www.w3.org/2000/svg"

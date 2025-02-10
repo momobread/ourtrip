@@ -12,7 +12,6 @@ const page = async ({ searchParams }: pageProps) => {
   const filter = searchParams.filter ?? 'low_price';
   const currentPage = searchParams.page ?? '1';
   const itemPerPage = searchParams.count ?? '12';
-  console.log(typeof currentPage);
   const { productData, totalItems, totalPages } = await fetchProducts({
     filter,
     category: '1', //큰 카테코리

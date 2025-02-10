@@ -19,6 +19,7 @@ const fetchProducts = async ({
   if (filter === 'low_price') filterOption = 'product_price.asc';
   if (filter === 'high_price') filterOption = 'product_price.desc';
   if (filter === 'best') filterOption = 'product_liked.desc';
+  if (filter === 'new') filterOption = 'product_created_at.desc';
 
   try {
     const response = await axios.get(`${SUPABASE_URL}/rest/v1/PRODUCTS`, {

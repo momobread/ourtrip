@@ -14,10 +14,11 @@ const page = async ({ searchParams }: pageProps) => {
   const itemPerPage = searchParams.count ?? '12';
   const { productData, totalItems, totalPages } = await fetchProducts({
     filter,
-    category: '2', //큰 카테코리
+    category: '4', //큰 카테코리
     itemPerPage, //보여줄 갯수
     currentPage, //현재페이지
   });
+  // const { slideData, pageNum } = pageNation({ option: 5, productData });
   return (
     <section className="h-full">
       <div className="flex flex-col items-center">
