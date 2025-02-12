@@ -31,7 +31,14 @@ export const authOptions = {
             }
           );
           console.log(data, '로그인 테스트중');
-          return { id: data.user.id, test: '성공' };
+          const result = {
+            id: data?.user?.id,
+            name: '모모',
+            email: data?.user?.email,
+            phone: '010-3344-4001',
+          };
+          console.log(result);
+          return result;
         } catch (e) {
           if (e instanceof Error) e;
           throw new Error(e);
@@ -42,6 +49,18 @@ export const authOptions = {
   callbacks: {
     async redirect({ url, baseUrl }) {
       return `${baseUrl}`;
+    },
+    async jwt({ token, user }) {
+      if (user) {
+        token.phone = user.phone;
+        token.id = user.id;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      session.user.phone = token.phone;
+      session.user.id = token.id;
+      return session;
     },
   },
   session: {

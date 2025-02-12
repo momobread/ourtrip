@@ -4,6 +4,9 @@ import { Noto_Sans_KR } from 'next/font/google';
 import '@/app/_styles/globals.css';
 import Footer from '@/app/_components/layout/Footer';
 import Header from '@/app/_components/layout/Header';
+import { SessionProvider } from 'next-auth/react';
+import UserNav from './_components/layout/UserNav';
+import SessionWrapper from './_components/Session/SessionWrapper';
 // import MainNav from '@/app/_components/layout/MainNav';
 
 const textNoto = Noto_Sans_KR({
@@ -30,6 +33,7 @@ export default function RootLayout({
         className={`${textNoto.className} flex min-h-screen w-full flex-col antialiased`}
       >
         <Header />
+
         {/* <MainNav /> */}
         <div className="h-full w-full">{children}</div>
         <Footer />

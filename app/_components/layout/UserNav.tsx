@@ -1,13 +1,32 @@
+'use client';
 import Link from 'next/link';
 
 import Tootip from '@/app/_components/Tootip';
+import SessionWrapper from '../Session/SessionWrapper';
+import { signIn, signOut, useSession } from 'next-auth/react';
 
 const UserNav = () => {
+  const { data } = useSession();
+  const user: { id: string } = data?.user;
+
   return (
     <div className="absolute right-0 top-0 h-[5rem] border border-purple-50 px-[1rem] hover:cursor-pointer">
       <ul className="flex h-[5rem] items-center justify-center gap-[2rem]">
-        <Link href="/login">
-          <li>
+        {user?.id ? (
+          <li onClick={() => signOut()}>
+            <Tootip text="로그아웃">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="size-[3rem]"
+              >
+                <path d="M18 1.5c2.9 0 5.25 2.35 5.25 5.25v3.75a.75.75 0 0 1-1.5 0V6.75a3.75 3.75 0 1 0-7.5 0v3a3 3 0 0 1 3 3v6.75a3 3 0 0 1-3 3H3.75a3 3 0 0 1-3-3v-6.75a3 3 0 0 1 3-3h9v-3c0-2.9 2.35-5.25 5.25-5.25Z" />
+              </svg>
+            </Tootip>
+          </li>
+        ) : (
+          <li onClick={() => signIn()}>
             <Tootip text="로그인">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -23,7 +42,7 @@ const UserNav = () => {
               </svg>
             </Tootip>
           </li>
-        </Link>
+        )}
         <li className="">
           <Tootip text="마이페이지">
             <svg
