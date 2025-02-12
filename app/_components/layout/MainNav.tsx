@@ -6,16 +6,16 @@ const MainNav = () => {
   const activePath = usePathname().split('/')?.[1] ?? '/';
 
   return (
-    <nav className="flex items-center justify-center gap-14">
+    <nav className="flex h-[15rem] items-center justify-center gap-14">
       <Link href="/motel?page=1&filter=low_price&count=12">
-        <li className="flex flex-col items-center justify-center p-[1rem] hover:rounded-lg hover:bg-grey-100">
+        <li className="group flex flex-col items-center justify-center p-[1rem] hover:rounded-lg hover:bg-grey-100">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className={`size-24 hover:text-primary-100 ${activePath === 'motel' ? 'text-primary-200' : 'text-gray-400'}`}
+            className={`size-24 group-hover:text-primary-100 ${activePath === 'motel' ? 'text-primary-200' : 'text-gray-400'}`}
           >
             <path
               strokeLinecap="round"
@@ -24,21 +24,21 @@ const MainNav = () => {
             />
           </svg>
           <span
-            className={`text-[2rem] font-bold ${activePath === 'motel' ? 'text-primary-200' : 'text-gray-400'}`}
+            className={`text-[2rem] font-bold group-hover:text-primary-100 ${activePath === 'motel' ? 'text-primary-200' : 'text-gray-400'}`}
           >
             모텔
           </span>
         </li>
       </Link>
       <Link href="/hotel?page=1&filter=low_price&count=12">
-        <li className="flex flex-col items-center justify-center p-[1rem] hover:rounded-lg hover:bg-grey-100">
+        <li className="group flex flex-col items-center justify-center p-[1rem] hover:rounded-lg hover:bg-grey-100">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className={`size-24 hover:text-primary-100 ${activePath === 'hotel' ? 'text-primary-200' : 'text-gray-400'}`}
+            className={`size-24 group-hover:text-primary-100 ${activePath === 'hotel' ? 'text-primary-200' : 'text-gray-400'}`}
           >
             <path
               strokeLinecap="round"
@@ -47,21 +47,21 @@ const MainNav = () => {
             />
           </svg>
           <span
-            className={`text-[2rem] font-bold ${activePath === 'hotel' ? 'text-primary-200' : 'text-gray-400'}`}
+            className={`text-[2rem] font-bold group-hover:text-primary-100 ${activePath === 'hotel' ? 'text-primary-200' : 'text-gray-400'}`}
           >
             호텔
           </span>
         </li>
       </Link>
       <Link href="/guest?page=1&filter=low_price&count=12">
-        <li className="flex flex-col items-center justify-center p-[1rem] hover:rounded-lg hover:bg-grey-100">
+        <li className="group flex flex-col items-center justify-center p-[1rem] hover:rounded-lg hover:bg-grey-100">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className={`size-24 hover:text-primary-100 ${activePath === 'guest' ? 'text-primary-200' : 'text-gray-400'}`}
+            className={`size-24 hover:text-primary-100 group-hover:text-primary-100 ${activePath === 'guest' ? 'text-primary-200' : 'text-gray-400'}`}
           >
             <path
               strokeLinecap="round"
@@ -71,21 +71,21 @@ const MainNav = () => {
           </svg>
 
           <span
-            className={`text-[2rem] font-bold ${activePath === 'guest' ? 'text-primary-200' : 'text-gray-400'}`}
+            className={`text-[2rem] font-bold group-hover:text-primary-100 ${activePath === 'guest' ? 'text-primary-200' : 'text-gray-400'}`}
           >
             게스트하우스
           </span>
         </li>
       </Link>
       <Link href="/leisure">
-        <li className="flex flex-col items-center justify-center p-[1rem] hover:rounded-lg hover:bg-grey-100">
+        <li className="group flex flex-col items-center justify-center p-[1rem] hover:rounded-lg hover:bg-grey-100">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className={`size-24 ${activePath === 'leisure' ? 'text-primary-200' : 'text-gray-400'}`}
+            className={`size-24 group-hover:text-primary-100 ${activePath === 'leisure' ? 'text-primary-200' : 'text-gray-400'}`}
           >
             <path
               strokeLinecap="round"
@@ -95,21 +95,21 @@ const MainNav = () => {
           </svg>
 
           <span
-            className={`hover:text- text-[2rem] font-bold ${activePath === 'leisure' ? 'text-primary-200' : 'text-gray-400'}`}
+            className={`text-[2rem] font-bold group-hover:text-primary-100 ${activePath === 'leisure' ? 'text-primary-200' : 'text-gray-400'}`}
           >
             레저
           </span>
         </li>
       </Link>
       <Link href="/activity">
-        <li className="flex flex-col items-center justify-center p-[1rem] hover:rounded-lg hover:bg-grey-100">
+        <li className="group flex flex-col items-center justify-center p-[1rem] hover:rounded-lg hover:bg-grey-100">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className={`size-24 hover:text-primary-100 ${activePath === 'activity' ? 'text-primary-100' : 'text-gray-400'}`}
+            className={`size-24 group-hover:text-primary-100 ${activePath === 'activity' ? 'text-primary-100' : 'text-gray-400'}`}
           >
             <path
               strokeLinecap="round"
@@ -119,7 +119,7 @@ const MainNav = () => {
           </svg>
 
           <span
-            className={`text-[2rem] font-bold ${activePath === 'activity' ? 'text-primary-200' : 'text-gray-400'}`}
+            className={`text-[2rem] font-bold group-hover:text-primary-100 ${activePath === 'activity' ? 'text-primary-200' : 'text-gray-400'}`}
           >
             공연/축제
           </span>

@@ -4,7 +4,7 @@ import { Noto_Sans_KR } from 'next/font/google';
 import '@/app/_styles/globals.css';
 import Footer from '@/app/_components/layout/Footer';
 import Header from '@/app/_components/layout/Header';
-import MainNav from '@/app/_components/layout/MainNav';
+// import MainNav from '@/app/_components/layout/MainNav';
 
 const textNoto = Noto_Sans_KR({
   subsets: ['latin'],
@@ -23,13 +23,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full">
       <body
-        className={`${textNoto.className} grid min-h-screen w-full grid-rows-[10rem_15rem_1fr_30rem] antialiased`}
+        // className={`${textNoto.className} grid min-h-screen w-full grid-rows-[10rem_15rem_1fr_30rem] antialiased`}
+        // className={`${textNoto.className} grid min-h-screen w-full grid-rows-[10rem_1fr_30rem] antialiased`}
+        className={`${textNoto.className} flex min-h-screen w-full flex-col antialiased`}
       >
         <Header />
-        <MainNav />
-        <main className="h-full w-full">{children}</main>
+        {/* <MainNav /> */}
+        <div className="h-full w-full">{children}</div>
         <Footer />
       </body>
     </html>

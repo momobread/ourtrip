@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import UserNav from './UserNav';
 
 // const StyledHeader = styled.header`
 //   padding: 1rem 0;
@@ -36,11 +37,12 @@ import Link from 'next/link';
 
 const Header = () => {
   return (
-    <header className="relative bg-black">
+    <header className="relative h-[10rem] bg-black">
       <Link href="/" className="flex h-full w-full items-center justify-center">
-        <Image src="/main_bg.png" fill alt="logo" />
+        <Image src="/bg3.png" fill alt="logo" />
         <span className="absolute text-[3rem] font-semibold">Our Trip</span>
       </Link>
+      <UserNav />
     </header>
   );
 };

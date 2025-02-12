@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="grid grid-rows-[4rem_4rem_4rem_4rem] items-center justify-center bg-grey-200 px-10 py-20 text-center">
+    <footer className="grid h-[30rem] grid-rows-[4rem_4rem_4rem_4rem] items-center justify-center bg-grey-200 px-10 py-20 text-center">
       <p>
         <span>
           법인명(상호) : 주식회사 레이컴펀; 대표자(성명) : 박시은 사업자 등록번호 : 999-99-99999
