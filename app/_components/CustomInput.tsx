@@ -9,15 +9,16 @@ interface CustomInputProps {
   register?: UseFormRegister<LoginType | JoinMemberType>;
   flag: boolean;
   pattern?: RegExp;
+  placeholder: string;
 }
 
-const CustomInput = ({ id, register, pattern }: CustomInputProps) => {
+const CustomInput = ({ id, register, pattern, placeholder }: CustomInputProps) => {
   if (typeof register === 'undefined') return;
   return (
     <input
       className="w-[90%] rounded-xl border border-accent-500 p-[0.5rem]"
       id={id}
-      placeholder={id}
+      placeholder={placeholder}
       {...register(
         id,
         pattern
