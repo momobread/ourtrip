@@ -14,8 +14,11 @@ export const authOptions = {
         password: { label: 'password', type: 'password' },
       },
       async authorize(credentials) {
+        console.log('로그인실행중');
+        if (!credentials?.id || !credentials?.password)
+          throw new Error('아이디와 비밀번호를 입력하세요');
         const { id, password } = credentials;
-        console.log(id, password);
+
         try {
           const { data } = await axios.post(
             `${SUPABASE_URL}/auth/v1/token?grant_type=password`,
@@ -30,26 +33,26 @@ export const authOptions = {
               },
             }
           );
-          console.log(data, '로그인 테스트중');
           const result = {
             id: data?.user?.id,
             name: '모모',
             email: data?.user?.email,
             phone: '010-3344-4001',
           };
-          console.log(result);
           return result;
         } catch (e) {
-          if (e instanceof Error) e;
-          throw new Error(e);
+          if (e instanceof Error) {
+            throw new Error('비밀번호와 아이디가 일치하지 않습니다');
+          }
+          throw new Error('credentails 로그인 실패');
         }
       },
     }),
   ],
   callbacks: {
-    async redirect({ url, baseUrl }) {
-      return `${baseUrl}`;
-    },
+    // async redirect({ url, baseUrl }) {
+    //   return `${baseUrl}`;
+    // },
     async jwt({ token, user }) {
       if (user) {
         token.phone = user.phone;

@@ -4,10 +4,6 @@ import { Noto_Sans_KR } from 'next/font/google';
 import '@/app/_styles/globals.css';
 import Footer from '@/app/_components/layout/Footer';
 import Header from '@/app/_components/layout/Header';
-import { SessionProvider } from 'next-auth/react';
-import UserNav from './_components/layout/UserNav';
-import SessionWrapper from './_components/Session/SessionWrapper';
-// import MainNav from '@/app/_components/layout/MainNav';
 
 const textNoto = Noto_Sans_KR({
   subsets: ['latin'],

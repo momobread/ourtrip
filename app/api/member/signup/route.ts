@@ -31,9 +31,8 @@ export async function POST(req: Request) {
         },
       }
     );
-    // console.log(data);
-    if (error) throw new Error(error.message);
-
+    console.log('signup');
+    if (!data) throw new Error(error.message);
     return NextResponse.json({ success: true, user: data }, { status: 201 });
     // eslint-disable-next-line
   } catch (e: any) {

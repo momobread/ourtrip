@@ -1,18 +1,18 @@
 'use client';
-import Link from 'next/link';
+// import Link from 'next/link';
+import { signIn, signOut, useSession } from 'next-auth/react';
 
 import Tootip from '@/app/_components/Tootip';
-import SessionWrapper from '../Session/SessionWrapper';
-import { signIn, signOut, useSession } from 'next-auth/react';
 
 const UserNav = () => {
   const { data } = useSession();
-  const user: { id: string } = data?.user;
+  const user = data?.user;
+  console.log(user);
 
   return (
     <div className="absolute right-0 top-0 h-[5rem] border border-purple-50 px-[1rem] hover:cursor-pointer">
       <ul className="flex h-[5rem] items-center justify-center gap-[2rem]">
-        {user?.id ? (
+        {user?.email ? (
           <li onClick={() => signOut()}>
             <Tootip text="로그아웃">
               <svg

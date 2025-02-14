@@ -1,6 +1,7 @@
+import Image from 'next/image';
+
 import CustomForm from '@/app/_components/CustomForm';
 import CustomInput from '@/app/_components/CustomInput';
-import Image from 'next/image';
 
 const FormStyle = `w-[50rem] border-grey-50 border z-9999 h-[60rem] absolute rounded-xl flex flex-col items-center gap-4 justify-center`;
 

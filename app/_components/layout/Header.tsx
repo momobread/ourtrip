@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import UserNav from './UserNav';
-import SessionWrapper from '../Session/SessionWrapper';
+
+import UserNav from '@/app/_components/layout/UserNav';
+import SessionWrapper from '@/app/_components/Session/SessionWrapper';
 // import UserNav from './UserNav';
 
 const Header = () => {

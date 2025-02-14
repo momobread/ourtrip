@@ -2,9 +2,9 @@ import Carousel from '@/app/_components/Home/Carousel';
 import EventPrivew from '@/app/_components/Home/EventPreview';
 import PopularCard from '@/app/_components/Home/PopularCard';
 import PopularLocation from '@/app/_components/Home/PopularList';
-import { fetchCarousel, fetchPopularCard } from '@/app/api/home';
+import MainNav from '@/app/_components/layout/MainNav';
 import { type PreImgProductType } from '@/app/_lib/types/product';
-import MainNav from './_components/layout/MainNav';
+import { fetchCarousel, fetchPopularCard } from '@/app/api/home';
 
 export default async function Home() {
   const carouselImg = await fetchCarousel();

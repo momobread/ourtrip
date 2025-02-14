@@ -1,13 +1,13 @@
 'use client';
 
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
-import { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 import { useForm, UseFormRegister } from 'react-hook-form';
 
 import CustomInput from '@/app/_components/CustomInput';
 import { type JoinMemberType, type LoginType } from '@/app/_lib/types/login';
-import { useRouter } from 'next/navigation';
 
 interface ChildProps {
   flag: boolean;
@@ -24,14 +24,22 @@ interface CustomFormProps {
 
 const CustomForm = ({ children, style, category }: CustomFormProps) => {
   const router = useRouter();
+  // eslint-disable-next-line
+  const [error, setError] = useState<any>('');
   const { handleSubmit, register } = useForm<LoginType | JoinMemberType>();
+
   const onSubmit = async (data: LoginType | JoinMemberType) => {
     if (category === 'login') {
-      console.log('들어옴');
       const result = await signIn('credentials', {
         id: data?.id,
         password: data?.password,
+        redirect: false,
       });
+      console.log(result);
+      if (!result?.ok) setError(result?.error);
+      else {
+        router.push('/');
+      }
     }
     if (category === 'join') {
       const { email, birth, gender, name, nickname, password, safePassword, phoneNumber } =
@@ -55,10 +63,12 @@ const CustomForm = ({ children, style, category }: CustomFormProps) => {
         const loginResponse = await signIn('credentials', {
           id: user?.user?.email,
           password: user?.user?.user_metadata?.safePassword,
+          redirect: false,
         });
+        if (!loginResponse?.ok) throw new Error('로그인실패2');
+        router.push('/');
       } catch (e) {
         console.log(e);
-        router.push('/');
       }
     }
   };
@@ -71,6 +81,7 @@ const CustomForm = ({ children, style, category }: CustomFormProps) => {
           child
         )
       )}
+      {error && <span className="text-red-300">{error}</span>}
     </form>
   );
 };

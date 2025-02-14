@@ -1,9 +1,9 @@
+import MainNav from '@/app/_components/layout/MainNav';
 import ProductList from '@/app/_components/product/ProductList';
 import ProductOptions from '@/app/_components/product/ProductOptions';
 import ProductPageNation from '@/app/_components/product/ProductPageNation';
 import SideNav from '@/app/_components/product/SideNav';
-import { fetchProducts } from '@/app/_lib/api/product';
-import MainNav from '../_components/layout/MainNav';
+import { fetchProducts } from '@/app/api/product/product';
 
 interface pageProps {
   searchParams: Record<string, string>;
