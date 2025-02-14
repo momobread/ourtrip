@@ -8,6 +8,7 @@ export async function POST(req: Request) {
   try {
     const { email, birth, gender, name, nickname, password, safePassword, phoneNumber } =
       await req.json();
+    console.log(name);
     const { data, error } = await axios.post(
       `
         ${SUPABASE_URL}/auth/v1/signup`,

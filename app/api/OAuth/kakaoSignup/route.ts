@@ -41,6 +41,7 @@ export async function GET(req: NextRequest) {
         Authorization: `Bearer ${token}`,
       },
     });
+
     const kakaoId = userInfo.id;
     const name = userInfo.properties?.nickname;
     const profile = userInfo.properties?.profile_image;
@@ -82,20 +83,18 @@ export async function GET(req: NextRequest) {
       return NextResponse.redirect(new URL('/', req.url));
     } else {
       console.log('회원가입중');
-
+      console.log(name);
       const { data, error } = await axios.post(
         `${BASE_URL}/api/member/signup`,
         {
           email,
           password: `${kakaoId}!!`,
-          data: {
-            birth: '',
-            gender: '',
-            name,
-            nickname: '',
-            safePassword: `${kakaoId}!!`,
-            phoneNumber: '',
-          },
+          birth: '',
+          gender: '',
+          name,
+          nickname: '',
+          safePassword: `${kakaoId}!!`,
+          phoneNumber: '',
         },
         {
           headers: {
@@ -108,9 +107,6 @@ export async function GET(req: NextRequest) {
       console.log('다시 돌아오나요>');
       if (!data) throw new Error(error.message);
       return NextResponse.redirect(new URL('/', req.url));
-      // 원래는 UseSession은 null이나 user값 같은게 필요한데 supabase auth랑 연결해서 supabase가
-      // session을 클라 저장소에 넣어서 null값이 안나오는거임
-      // return NextResponse.json({ success: true, user: data }, { status: 201 });
     }
 
     //없으면 ? 가입시키기
