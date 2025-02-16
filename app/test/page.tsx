@@ -1,8 +1,12 @@
-// 'use client';
+'use client';
 
-// import { signIn } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 
-// const page = () => {
-//   return <div onClick={() => signIn()}>page</div>;
-// };
-// export default page;
+const page = () => {
+  return (
+    <div>
+      <div onClick={() => signIn('kakao')}>page</div>
+    </div>
+  );
+};
+export default page;

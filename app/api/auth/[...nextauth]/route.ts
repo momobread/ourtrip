@@ -1,6 +1,7 @@
 import axios from 'axios';
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import Kakao from 'next-auth/providers/kakao';
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_KEY;
@@ -48,21 +49,36 @@ export const authOptions = {
         }
       },
     }),
+    Kakao({
+      clientId: process.env.OAUTH_KAKAO_REST_API_KEY ?? '',
+      clientSecret: process.env.OAUTH_KAKAO_CLIENT_SECRET ?? '',
+    }),
   ],
   callbacks: {
-    // async redirect({ url, baseUrl }) {
-    //   return `${baseUrl}`;
-    // },
-    async jwt({ token, user }) {
+    async redirect({ url, baseUrl }) {
+      return `${baseUrl}`;
+    },
+    async jwt({ token, user, account, profile }) {
       if (user) {
         token.phone = user.phone;
         token.id = user.id;
+      }
+      if (account && profile) {
+        token.accessToken = account.access_token;
+        token.id = profile.id;
+        token.name = profile.properties?.nickname;
+        token.email = profile.kakao_account?.email;
+        token.image = profile.properties?.profile_image;
       }
       return token;
     },
     async session({ session, token }) {
       session.user.phone = token.phone;
       session.user.id = token.id;
+
+      session.user.name = token.name;
+      session.user.email = token.email;
+      session.user.image = token.image;
       return session;
     },
   },

@@ -1,17 +1,37 @@
 'use client';
+import axios from 'axios';
+import { signIn } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 const MemberButtons = () => {
   const AUTHORIZE_URL = process.env.NEXT_PUBLIC_OAUTH_KAKAO_AUTHORIZE_URL;
   const REST_API_KEY = process.env.NEXT_PUBLIC_OAUTH_KAKAO_REST_API_KEY;
   const REDIRECT_URI = process.env.NEXT_PUBLIC_OAUTH_KAKAO_REDIRECT_URI;
 
-  function handleKakaoLogin() {
-    const kakaoUrl = `${AUTHORIZE_URL}?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`;
-    location.href = kakaoUrl;
-  }
+  const [kakao, setKakao] = useState<boolean>(false);
+  const router = useRouter();
+
+  // useEffect(() => {
+  //   if (!kakao) return;
+  //   async function kakaoAuthorize() {
+  //     try {
+  //       const response = await signIn('kakao', { redirect: false });
+  //     } catch (e) {
+  //       console.log(e);
+  //     }
+  //   }
+  //   kakaoAuthorize();
+  // }, [kakao]);
+
+  // async function handleKakaoLogin() {
+  //   // const kakaoUrl = `${AUTHORIZE_URL}?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`;
+  //   // location.href = kakaoUrl;
+  //   const res = await signIn('kakao', { redirect: false });
+  //   console.log(res);
+  // }
   return (
     <div className="flex flex-col gap-[1rem]">
       <button
@@ -40,7 +60,9 @@ const MemberButtons = () => {
         <button
           type="button"
           className="relative h-[5rem] w-[90%]"
-          onClick={() => handleKakaoLogin()}
+          // onClick={() => handleKakaoLogin()}
+          // onClick={() => setKakao(true)}
+          onClick={() => signIn('kakao')}
         >
           <Image src="/member/kakao/kakao_login.png" fill alt="kakao_login" />
           카카오로그인
