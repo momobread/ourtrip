@@ -5,6 +5,7 @@ interface FetchProductsType {
   category: string;
   itemPerPage: string;
   currentPage: string;
+  location: string;
 }
 interface FetchProductsReturnType {
   productData: ProductType[];

@@ -10,17 +10,22 @@ const fetchProducts = async ({
   category,
   itemPerPage,
   currentPage,
+  location,
 }: FetchProductsType): Promise<FetchProductsReturnType> => {
   // await new Promise((res) => setTimeout(res, 3000));
   // console.log('시작');
   // console.log(filter, category, itemPerPage, currentPage);
   let filterOption;
+  let locationFilter;
   // if (filter === 'all') filterOption = 'id.desc';
   if (filter === 'low_price') filterOption = 'product_price.asc';
   if (filter === 'high_price') filterOption = 'product_price.desc';
   if (filter === 'best') filterOption = 'product_liked.desc';
   if (filter === 'new') filterOption = 'product_created_at.desc';
+  if (location === 'seoul')
+    locationFilter = { lat: { min: 37.425, max: 37.701 }, lng: { min: 126.766, max: 127.183 } };
 
+  console.log(locationFilter);
   try {
     const response = await axios.get(`${SUPABASE_URL}/rest/v1/PRODUCTS`, {
       headers: {
@@ -31,6 +36,10 @@ const fetchProducts = async ({
 
       params: {
         product_category: `eq.${category}`,
+        product_lng: [`gte.${locationFilter?.lng.min}`, `lte.${locationFilter?.lng.max}`], // ✅ 개별 필터 적용
+        product_lat: [`gte.${locationFilter?.lat.min}`, `lte.${locationFilter?.lat.max}`],
+        // 'product_lat.gte': locationFilter?.lat.min,
+        // 'product_lat.lte': locationFilter?.lat.max,
         order: `${filterOption}`,
         limit: Number(itemPerPage),
         offset: (Number(currentPage) - 1) * Number(itemPerPage),
@@ -45,6 +54,8 @@ const fetchProducts = async ({
       },
       params: {
         product_category: `eq.${category}`,
+        product_lng: [`gte.${locationFilter?.lng.min}`, `lte.${locationFilter?.lng.max}`], // ✅ 개별 필터 적용
+        product_lat: [`gte.${locationFilter?.lat.min}`, `lte.${locationFilter?.lat.max}`],
         select: 'count',
       },
     });
@@ -57,11 +68,32 @@ const fetchProducts = async ({
       totalPages,
     };
   } catch (e) {
+    console.log(e.message);
     if (e instanceof Error) {
       throw e;
     } else {
       throw new Error(`상품페치에 실패하였습니다`);
     }
+  }
+};
+
+const fetchProduct = async (itemNum: string) => {
+  console.log(itemNum);
+  try {
+    const { data, error } = await axios.get(`${SUPABASE_URL}/rest/v1/PRODUCTS`, {
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      params: {
+        product_num: `eq.${itemNum}`,
+      },
+    });
+    if (!data) throw new Error(error.message);
+    return data?.[0];
+  } catch (e) {
+    throw new Error(e.message);
   }
 };
 
@@ -197,4 +229,5 @@ const makeProductsBeta = async () => {
     console.log(e);
   }
 };
-export { fetchProducts, makeProductsBeta };
+export { fetchProducts, makeProductsBeta, fetchProduct };
+// export { fetchProducts, makeProductsBeta };

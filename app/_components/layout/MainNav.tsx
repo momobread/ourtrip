@@ -7,7 +7,7 @@ const MainNav = () => {
 
   return (
     <nav className="flex h-[15rem] items-center justify-center gap-14">
-      <Link href="/motel?page=1&filter=low_price&count=12">
+      <Link href="/motel?page=1&filter=low_price&count=12&location=seoul">
         <li className="group flex flex-col items-center justify-center p-[1rem] hover:rounded-lg hover:bg-grey-100">
           <svg
             xmlns="http://www.w3.org/2000/svg"
