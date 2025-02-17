@@ -8,18 +8,16 @@ import RoomOptions from '@/app/_components/ProductDetail/RoomOptions';
 const page = async ({ params }) => {
   const productId = (await params?.motelId) ?? '';
   const productData = await fetchProduct(productId);
-  //   const { productData } = await axios.get('/api/product/detail', {
-  //     params: { itemNum: productId },
-  //   });
 
-  //   const productData = await axios.get('/api/product/detail');
+  const { product_lng, product_lat, product_name } = productData;
 
+  const marker = { id: 0, lat: product_lat, lng: product_lng, title: product_name };
   return (
     <>
       <MainNav />
       <main className="">
         <section className="">
-          <DetailInform data={productData} />
+          <DetailInform data={productData} marker={marker} />
           <RoomOptions />
         </section>
       </main>

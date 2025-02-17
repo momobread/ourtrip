@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import { FetchProductsReturnType, type FetchProductsType } from '@/app/_lib/types/params';
+import { ProductType } from '@/app/_lib/types/product';
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_KEY;
@@ -77,7 +78,7 @@ const fetchProducts = async ({
   }
 };
 
-const fetchProduct = async (itemNum: string) => {
+const fetchProduct = async (itemNum: string): Promise<ProductType> => {
   console.log(itemNum);
   try {
     const { data, error } = await axios.get(`${SUPABASE_URL}/rest/v1/PRODUCTS`, {

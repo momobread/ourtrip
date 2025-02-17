@@ -2,7 +2,14 @@
 
 import { useEffect, useState } from 'react';
 
-import { GoogleMap, LoadScript, Marker, InfoWindow, Circle } from '@react-google-maps/api';
+import {
+  GoogleMap,
+  LoadScript,
+  Marker,
+  InfoWindow,
+  Circle,
+  LoadScriptNext,
+} from '@react-google-maps/api';
 
 const GOOGLE_MAPS_APIKEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_APIKEY ?? '';
 
@@ -23,7 +30,7 @@ const center = {
 interface CustomMapStyle {
   formStyle: any;
   markers: any;
-  center: { lat: string; lng: string };
+  center: { lat: number; lng: number };
 }
 
 const CustomMap = ({ formStyle, markers, center }: CustomMapStyle) => {
@@ -64,7 +71,7 @@ const CustomMap = ({ formStyle, markers, center }: CustomMapStyle) => {
 
   return (
     <div className={`flex flex-col items-center border border-primary-800 p-[2rem] ${formStyle}`}>
-      <LoadScript googleMapsApiKey={GOOGLE_MAPS_APIKEY}>
+      <LoadScriptNext googleMapsApiKey={GOOGLE_MAPS_APIKEY}>
         <GoogleMap mapContainerStyle={containerStyle} center={currentPosition} zoom={focus}>
           {/* {markers.map((marker, index) => (
             <Circle
@@ -93,7 +100,7 @@ const CustomMap = ({ formStyle, markers, center }: CustomMapStyle) => {
             }}
           /> */}
 
-          {markers.map((marker) => (
+          {markers.map((marker, i) => (
             <Marker
               key={marker.id}
               position={{ lat: marker.lat, lng: marker.lng }}
@@ -130,7 +137,7 @@ const CustomMap = ({ formStyle, markers, center }: CustomMapStyle) => {
             </svg>
           </div>
         </GoogleMap>
-      </LoadScript>
+      </LoadScriptNext>
     </div>
   );
 };
