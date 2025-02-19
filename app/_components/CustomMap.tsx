@@ -10,6 +10,7 @@ import {
   Circle,
   LoadScriptNext,
 } from '@react-google-maps/api';
+import { ClipLoader } from 'react-spinners';
 
 const GOOGLE_MAPS_APIKEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_APIKEY ?? '';
 
@@ -37,13 +38,18 @@ const CustomMap = ({ formStyle, markers, center }: CustomMapStyle) => {
   const [selectMarker, setSelectMarker] = useState<any>(null);
   const [currentPosition, setCurrentPosition] = useState<any>(center);
   const [focus, setFocus] = useState<number>(10);
-
+  const [isLoading, setIsLoading] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
+  const [tooltipMessage, setTooltipMessage] = useState('버튼을 누르면 현재위치로 포커싱됩니다');
   useEffect(() => {
     setCurrentPosition(center);
   }, [center]);
 
   const ClickCurretLocation = () => {
     if (navigator.geolocation) {
+      setIsLoading(true);
+      setIsDisabled(true);
+      setTooltipMessage('이미 현재위치 입니다');
       navigator.geolocation.getCurrentPosition((position) => {
         setCurrentPosition({
           lat: position.coords.latitude,
@@ -56,6 +62,9 @@ const CustomMap = ({ formStyle, markers, center }: CustomMapStyle) => {
     }
   };
 
+  const handleTilesLoaded = () => {
+    setIsLoading(false); // 타일 로딩 완료되면 로딩 종료
+  };
   // useEffect(() => {
   //   if (currentPosition === center) return;
   //   setMarkers((markers) => [
@@ -72,7 +81,12 @@ const CustomMap = ({ formStyle, markers, center }: CustomMapStyle) => {
   return (
     <div className={`flex flex-col items-center border border-primary-800 p-[2rem] ${formStyle}`}>
       <LoadScriptNext googleMapsApiKey={GOOGLE_MAPS_APIKEY}>
-        <GoogleMap mapContainerStyle={containerStyle} center={currentPosition} zoom={focus}>
+        <GoogleMap
+          onTilesLoaded={handleTilesLoaded}
+          mapContainerStyle={containerStyle}
+          center={currentPosition}
+          zoom={focus}
+        >
           {/* {markers.map((marker, index) => (
             <Circle
               key={index}
@@ -108,6 +122,13 @@ const CustomMap = ({ formStyle, markers, center }: CustomMapStyle) => {
               onClick={() => setSelectMarker(marker)}
             />
           ))}
+          {isLoading ? (
+            <div className="absolute left-[37%] top-[35%]">
+              <ClipLoader size={150} />
+            </div>
+          ) : (
+            ''
+          )}
           {selectMarker && (
             <InfoWindow
               position={{ lat: selectMarker.lat, lng: selectMarker.lng }}
@@ -119,22 +140,27 @@ const CustomMap = ({ formStyle, markers, center }: CustomMapStyle) => {
               </div>
             </InfoWindow>
           )}
-          <div
-            onClick={() => ClickCurretLocation()}
-            className="absolute bottom-0 flex size-[4rem] cursor-pointer items-center justify-center bg-slate-50 opacity-70"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="size-12"
+          <div onClick={() => ClickCurretLocation()} className="group">
+            <p className="absolute bottom-[10%] left-[5%] rounded-md bg-black px-[1rem] py-[0.5rem] font-bold text-purple-50 opacity-0 group-hover:opacity-60">
+              {tooltipMessage}
+            </p>
+            <button
+              disabled={isDisabled}
+              className="absolute bottom-0 flex size-[4rem] cursor-pointer items-center justify-center bg-slate-50 opacity-70"
             >
-              <path
-                fillRule="evenodd"
-                d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
-                clipRule="evenodd"
-              />
-            </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="size-12"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </button>
           </div>
         </GoogleMap>
       </LoadScriptNext>

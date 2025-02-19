@@ -1,7 +1,8 @@
+import Image from 'next/image';
+
 import { ProductType } from '@/app/_lib/types/product';
 import { priceFormat } from '@/app/_lib/utils/format';
-import Image from 'next/image';
-import DetailLocation from './DetailLocation';
+import DetailLocation from '@/app/_components/ProductDetail/DetailLocation';
 import PreviewReview from './PreviewReview';
 import Amenities from './Amenities';
 

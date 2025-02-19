@@ -10,11 +10,19 @@ interface ProductType {
   product_num: string;
   product_lng: Float32Array;
   product_lat: Float32Array;
+  PRODUCT_ROOMS: RoomType[];
 }
 
+interface RoomType {
+  id: number;
+  room_image: string;
+  room_price: number;
+  room_name: string;
+  product_num: string;
+}
 interface PreImgProductType {
   title: string;
   url: string;
 }
 
-export type { ProductType, PreImgProductType };
+export type { ProductType, PreImgProductType, RoomType };

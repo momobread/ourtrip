@@ -1,4 +1,13 @@
 // import axios from 'axios';
+
+// const SUPABASE_KEY = process.env.SUPABASE_KEY;
+// const SUPABASE_URL = process.env.SUPABASE_URL;
+
+// const fetchRooms = async ({ product_num }) => {
+//   const { data } = axios.get(`${SUPABASE_URL}`);
+// };
+
+// import axios from 'axios';
 // import { NextRequest, NextResponse } from 'next/server';
 
 // const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -27,3 +36,5 @@
 //     throw new Error(e.message);
 //   }
 // }
+
+export { fetchRooms };

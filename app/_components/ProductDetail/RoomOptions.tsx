@@ -1,30 +1,35 @@
 import Image from 'next/image';
+import CustomDate from '../CustomDate';
+import { RoomType } from '@/app/_lib/types/product';
+import Room from './Room';
+import { differenceInDays } from 'date-fns';
 
-const RoomOptions = () => {
+interface RoomOptionsProps {
+  data: RoomType[];
+  date: { checkIn: string; checkOut: string };
+}
+
+const RoomOptions = async ({ data, date }: RoomOptionsProps) => {
+  const { checkIn, checkOut } = date;
   return (
     <div className="flex flex-col items-center bg-slate-300">
       <div className="w-[60%]">
         <span>객실선택</span>
-
-        <div className="flex justify-between gap-[1rem]" id="calender">
-          <p className="w-[50%] border border-primary-800">03.02~03.03 / 1박</p>
-          <p className="w-[50%] border border-primary-800">성인 2</p>
+        <CustomDate />
+        <div className="w-full border border-primary-800">
+          {date.checkIn} ~ {date.checkOut}
+          <p>
+            선택된 숙박기간은{' '}
+            <span className="text-primary-200"> {differenceInDays(checkOut, checkIn)}일</span>{' '}
+            입니다
+          </p>
         </div>
-        <div>
-          <div className="relative h-[20rem] w-[40%]">
-            <Image src="/bg.jpeg" alt="hellio" fill />
-          </div>
-          <div>
-            <span>럭셔리 스위트</span>
-            <p>
-              <span>입실 13</span>
-              <span>퇴실 15</span>
-            </p>
-            <span>가격 : 1000000</span>
-          </div>
-        </div>
+        {data.map((room) => (
+          <Room key={room.id} room={room} />
+        ))}
       </div>
     </div>
   );
 };
+
 export default RoomOptions;
