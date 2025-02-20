@@ -13,20 +13,43 @@ const fetchProducts = async ({
   currentPage,
   location,
 }: FetchProductsType): Promise<FetchProductsReturnType> => {
-  // await new Promise((res) => setTimeout(res, 3000));
-  // console.log('시작');
-  // console.log(filter, category, itemPerPage, currentPage);
   let filterOption;
   let locationFilter;
-  // if (filter === 'all') filterOption = 'id.desc';
+
   if (filter === 'low_price') filterOption = 'product_price.asc';
   if (filter === 'high_price') filterOption = 'product_price.desc';
   if (filter === 'best') filterOption = 'product_liked.desc';
   if (filter === 'new') filterOption = 'product_created_at.desc';
-  if (location === 'seoul')
-    locationFilter = { lat: { min: 37.425, max: 37.701 }, lng: { min: 126.766, max: 127.183 } };
 
-  console.log(locationFilter);
+  if (location === '서울')
+    locationFilter = {
+      lat: { min: 37.425, max: 37.701 },
+      lng: { min: 126.766, max: 127.183 },
+    };
+  if (location === '수원') {
+    locationFilter = {
+      lat: { min: 37.216, max: 37.331 },
+      lng: { min: 126.95, max: 127.08 },
+    };
+  }
+  if (location === '인천') {
+    locationFilter = {
+      lat: { min: 37.37, max: 37.6 },
+      lng: { min: 126.56, max: 126.84 },
+    };
+  }
+  if (location === '부산') {
+    locationFilter = {
+      lat: { min: 35.05, max: 35.3 },
+      lng: { min: 128.9, max: 129.25 },
+    };
+  }
+  if (location === '대구') {
+    locationFilter = {
+      lat: { min: 35.76, max: 35.99 },
+      lng: { min: 128.5, max: 128.72 },
+    };
+  }
   try {
     const response = await axios.get(`${SUPABASE_URL}/rest/v1/PRODUCTS`, {
       headers: {
@@ -78,6 +101,67 @@ const fetchProducts = async ({
   }
 };
 
+const fetchPreviewProducts = async (filterLocation: string): Promise<ProductType[]> => {
+  // let filterOption;
+  let locationFilter;
+  if (filterLocation === '서울')
+    locationFilter = {
+      lat: { min: 37.425, max: 37.701 },
+      lng: { min: 126.766, max: 127.183 },
+    };
+  if (filterLocation === '수원') {
+    locationFilter = {
+      lat: { min: 37.216, max: 37.331 },
+      lng: { min: 126.95, max: 127.08 },
+    };
+  }
+  if (filterLocation === '인천') {
+    locationFilter = {
+      lat: { min: 37.37, max: 37.6 },
+      lng: { min: 126.56, max: 126.84 },
+    };
+  }
+  if (filterLocation === '부산') {
+    locationFilter = {
+      lat: { min: 35.05, max: 35.3 },
+      lng: { min: 128.9, max: 129.25 },
+    };
+  }
+  if (filterLocation === '대구') {
+    locationFilter = {
+      lat: { min: 35.76, max: 35.99 },
+      lng: { min: 128.5, max: 128.72 },
+    };
+  }
+
+  const category = '1';
+  // const locationFilter = { lat: { min: 37.425, max: 37.701 }, lng: { min: 126.766, max: 127.183 } };
+  try {
+    const { data, error } = (await axios.get(`${SUPABASE_URL}/rest/v1/PRODUCTS`, {
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'applictaion/json',
+      },
+
+      params: {
+        product_category: `eq.${category}`,
+        product_lng: [`gte.${locationFilter?.lng.min}`, `lte.${locationFilter?.lng.max}`],
+        product_lat: [`gte.${locationFilter?.lat.min}`, `lte.${locationFilter?.lat.max}`],
+      },
+      // eslint-disable-next-line
+    })) as { data: ProductType[]; error: any };
+    if (!data) throw new Error(error.message);
+
+    return data;
+  } catch (e) {
+    if (e instanceof Error) throw new Error(e.message);
+    else {
+      throw new Error('상품 미리보기 프리뷰 실패');
+    }
+  }
+};
+
 const fetchProduct = async (itemNum: string): Promise<ProductType> => {
   try {
     const { data, error } = await axios.get(`${SUPABASE_URL}/rest/v1/PRODUCTS`, {
@@ -98,5 +182,5 @@ const fetchProduct = async (itemNum: string): Promise<ProductType> => {
   }
 };
 
-export { fetchProducts, fetchProduct };
+export { fetchProducts, fetchProduct, fetchPreviewProducts };
 // export { fetchProducts, makeProductsBeta };

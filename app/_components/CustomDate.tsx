@@ -1,10 +1,10 @@
 'use client';
 
+import { addDays, format, subDays } from 'date-fns';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { DateRange, DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
-import { addDays, format } from 'date-fns';
 
 const CustomDate = () => {
   const searchParams = useSearchParams();
@@ -58,7 +58,7 @@ const CustomDate = () => {
         selected={range}
         onSelect={handleSelect}
         min={1}
-        disabled={(date) => date < new Date(new Date().setDate(new Date().getDate() - 1))}
+        disabled={(date) => date < subDays(new Date(), 1)}
       />
     </div>
   );

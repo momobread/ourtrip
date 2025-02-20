@@ -134,4 +134,30 @@ const makeProductsBeta = async () => {
     console.log(e);
   }
 };
-export { makeProductsBeta };
+
+const test = async () => {
+  const { data } = await axios.get(
+    `${SUPABASE_URL}/rest/v1/PRODUCTS`,
+
+    {
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'applictaion/json',
+      },
+      params: {
+        product_category: 'eq.1',
+      },
+    }
+  );
+
+  // const response2 = await Promise.all(
+  //   data.map(async (v) => {
+  //     axios.post(`${SUPABASE_URL}/rest/v1/PRODUCTS`, {
+  //       product_lat,
+  //       product_lng,
+  //     });
+  //   })
+  // );
+};
+export { makeProductsBeta, test };

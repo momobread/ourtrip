@@ -13,4 +13,12 @@ interface FetchProductsReturnType {
   totalPages: number;
 }
 
-export type { FetchProductsType, FetchProductsReturnType };
+interface GoogleMapMarkerType {
+  id: number;
+  lat: number;
+  lng: number;
+  title?: string;
+  product_num?: string;
+}
+
+export type { FetchProductsType, FetchProductsReturnType, GoogleMapMarkerType };

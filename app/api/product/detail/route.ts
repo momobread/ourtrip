@@ -1,40 +1,47 @@
-// import axios from 'axios';
+import axios from 'axios';
+import { NextResponse } from 'next/server';
 
-// const SUPABASE_KEY = process.env.SUPABASE_KEY;
-// const SUPABASE_URL = process.env.SUPABASE_URL;
+const SUPABASE_KEY = process.env.SUPABASE_KEY;
+const SUPABASE_URL = process.env.SUPABASE_URL;
 
-// const fetchRooms = async ({ product_num }) => {
-//   const { data } = axios.get(`${SUPABASE_URL}`);
-// };
+export async function PATCH(req: Request) {
+  try {
+    const { product_num, likeCount, uuid } = await req.json();
+    const { data, error } = await axios.get(`${SUPABASE_URL}/rest/v1/PRODUCT_LIKE`, {
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+      },
+      params: {
+        product_num: `eq.${product_num}`,
+        user_id: `eq.${uuid}`,
+      },
+    });
+    console.log(data);
+    // 테이블을 새로 설계했으니, productlist와 productdetail에서 데이터를 가져오는 api부분 수정필요함
+    //그리고 커스텀엔드포인트로 서버에서 axios 날린거 바꾸기 => 서버에서는 fetch로 날리고 api안에서 axios로 날리고
 
-// import axios from 'axios';
-// import { NextRequest, NextResponse } from 'next/server';
+    // const { data, error } = await axios.patch(
+    //   `${SUPABASE_URL}/rest/v1/PRODUCTS`,
+    //   {
+    //     product_liked: likeCount,
+    //   },
+    //   {
+    //     headers: {
+    //       apikey: SUPABASE_KEY,
+    //       Authorization: `Bearer ${SUPABASE_KEY}`,
+    //       'Content-Type': 'application/json',
+    //       Prefer: 'return=minimal',
+    //     },
+    //     params: {
+    //       product_num: `eq.${product_num}`,
+    //     },
+    //   }
+    // );
+    // if (!data) throw new Error(error.message);
 
-// const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
-// const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_KEY;
-
-// export async function GET(req: NextRequest) {
-//   console.log('실행중');
-//   console.log(new URL(req.url));
-//   const { searchParams } = new URL(req.url);
-//   const itemNum = searchParams.get('itemNum');
-
-//   try {
-//     const { data, error } = await axios.get(`${SUPABASE_URL}/rest/v1/PRODUCTS`, {
-//       headers: {
-//         apikey: SUPABASE_KEY,
-//         Authorization: `Bearer ${SUPABASE_KEY}`,
-//         'Content-Type': 'application/json',
-//       },
-//       params: {
-//         product_num: `eq.${itemNum}`,
-//       },
-//     });
-//     if (!data) throw new Error(error.message);
-//     return NextResponse.json({ data: data?.[0] });
-//   } catch (e) {
-//     throw new Error(e.message);
-//   }
-// }
-
-export { fetchRooms };
+    return NextResponse.json({ status: 200 });
+  } catch (e) {
+    return NextResponse.json({ status: 400 });
+  }
+}

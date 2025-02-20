@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 import { GoogleMap, Marker, InfoWindow, Circle, LoadScriptNext } from '@react-google-maps/api';
 import { ClipLoader } from 'react-spinners';
+import { GoogleMapMarkerType } from '@/app/_lib/types/params';
 
 const GOOGLE_MAPS_APIKEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_APIKEY ?? '';
 
@@ -16,16 +17,22 @@ const containerStyle = {
 //내위치 버튼을 누르면 내위치로 포커싱한다.그리고 반경을 표시한다.
 //
 
-const DetailLocation = ({ marker }) => {
-  const [currentPosition, setCurrentPosition] = useState<any>({
+interface DetailLocationProps {
+  marker: GoogleMapMarkerType;
+}
+type currentPositionType = { lng: number; lat: number };
+const DetailLocation = ({ marker }: DetailLocationProps) => {
+  const [currentPosition, setCurrentPosition] = useState<currentPositionType>({
     lng: marker?.lng,
     lat: marker?.lat,
   });
-  const [selectMarker, setSelectMarker] = useState<any>([
+  const [selectMarker, setSelectMarker] = useState<GoogleMapMarkerType[]>([
     {
+      title: marker?.title,
       lat: marker?.lat,
       lng: marker?.lng,
       id: marker?.id,
+      product_num: marker?.product_num,
     },
   ]);
 
@@ -38,8 +45,8 @@ const DetailLocation = ({ marker }) => {
       setIsDisabled(true);
       setTooltipMessage('이미 현재위치 입니다');
       navigator.geolocation.getCurrentPosition((position) => {
-        setSelectMarker((v) => [
-          ...v,
+        setSelectMarker((premarker) => [
+          ...premarker,
           {
             id: selectMarker.length + 1,
             lat: position.coords.latitude,

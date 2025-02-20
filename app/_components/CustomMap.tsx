@@ -1,16 +1,11 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
-
-import {
-  GoogleMap,
-  LoadScript,
-  Marker,
-  InfoWindow,
-  Circle,
-  LoadScriptNext,
-} from '@react-google-maps/api';
 import { ClipLoader } from 'react-spinners';
+
+import { GoogleMapMarkerType } from '@/app/_lib/types/params';
+import { GoogleMap, Marker, InfoWindow, LoadScriptNext } from '@react-google-maps/api';
 
 const GOOGLE_MAPS_APIKEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_APIKEY ?? '';
 
@@ -19,28 +14,22 @@ const containerStyle = {
   height: '100%',
 };
 
-const center = {
-  lat: 37.5665,
-  lng: 126.978,
-};
-
-// 지도보기를 누르면 구글맵이 나타난다. => 숙박의 위치를 센터로 한다
-//내위치 버튼을 누르면 내위치로 포커싱한다.그리고 반경을 표시한다.
-//
-
+type CurrentPositionType = { lng: number; lat: number };
 interface CustomMapStyle {
-  formStyle: any;
-  markers: any;
+  formStyle: string;
+  markers: GoogleMapMarkerType[];
   center: { lat: number; lng: number };
+  category: string;
 }
 
-const CustomMap = ({ formStyle, markers, center }: CustomMapStyle) => {
-  const [selectMarker, setSelectMarker] = useState<any>(null);
-  const [currentPosition, setCurrentPosition] = useState<any>(center);
+const CustomMap = ({ formStyle, markers, center, category }: CustomMapStyle) => {
+  const [selectMarker, setSelectMarker] = useState<GoogleMapMarkerType | null>(null);
+  const [currentPosition, setCurrentPosition] = useState<CurrentPositionType>(center);
   const [focus, setFocus] = useState<number>(10);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isDisabled, setIsDisabled] = useState(false);
-  const [tooltipMessage, setTooltipMessage] = useState('버튼을 누르면 현재위치로 포커싱됩니다');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isDisabled, setIsDisabled] = useState<boolean>(false);
+  const [tooltipMessage, setTooltipMessage] =
+    useState<string>('버튼을 누르면 현재위치로 포커싱됩니다');
   useEffect(() => {
     setCurrentPosition(center);
   }, [center]);
@@ -79,7 +68,9 @@ const CustomMap = ({ formStyle, markers, center }: CustomMapStyle) => {
   // }, [currentPosition]);
 
   return (
-    <div className={`flex flex-col items-center border border-primary-800 p-[2rem] ${formStyle}`}>
+    <div
+      className={`flex flex-col items-center border border-primary-800 p-[2rem] ${formStyle} rounded-2xl`}
+    >
       <LoadScriptNext googleMapsApiKey={GOOGLE_MAPS_APIKEY}>
         <GoogleMap
           onTilesLoaded={handleTilesLoaded}
@@ -114,7 +105,7 @@ const CustomMap = ({ formStyle, markers, center }: CustomMapStyle) => {
             }}
           /> */}
 
-          {markers.map((marker, i) => (
+          {markers.map((marker) => (
             <Marker
               key={marker.id}
               position={{ lat: marker.lat, lng: marker.lng }}
@@ -135,8 +126,8 @@ const CustomMap = ({ formStyle, markers, center }: CustomMapStyle) => {
               onCloseClick={() => setSelectMarker(null)}
             >
               <div>
-                <p>TEST용 입니다</p>
                 <p>{selectMarker.title}</p>
+                <Link href={`/${category}/${selectMarker.product_num}`}>상세정보 보기 </Link>
               </div>
             </InfoWindow>
           )}

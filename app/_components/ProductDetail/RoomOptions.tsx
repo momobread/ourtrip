@@ -11,6 +11,7 @@ interface RoomOptionsProps {
 
 const RoomOptions = async ({ data, date }: RoomOptionsProps) => {
   const { checkIn, checkOut } = date;
+  const stayDays = differenceInDays(checkOut, checkIn);
   return (
     <div className="flex flex-col items-center bg-slate-300">
       <div className="w-[60%]">
@@ -19,14 +20,15 @@ const RoomOptions = async ({ data, date }: RoomOptionsProps) => {
         <div className="w-full border border-primary-800">
           {date.checkIn} ~ {date.checkOut}
           <p>
-            선택된 숙박기간은{' '}
-            <span className="text-primary-200"> {differenceInDays(checkOut, checkIn)}일</span>{' '}
-            입니다
+            선택된 숙박기간은
+            <span className="text-primary-200"> {stayDays}일</span> 입니다
           </p>
         </div>
-        {data.map((room) => (
-          <Room key={room.id} room={room} />
-        ))}
+        <ul className="my-[1rem] flex flex-col gap-[1rem]">
+          {data.map((room) => (
+            <Room key={room.id} room={room} stayDays={stayDays} date={date} />
+          ))}
+        </ul>
       </div>
     </div>
   );

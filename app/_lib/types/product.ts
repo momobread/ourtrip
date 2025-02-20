@@ -8,8 +8,8 @@ interface ProductType {
   product_liked: number;
   product_created_at: Date;
   product_num: string;
-  product_lng: Float32Array;
-  product_lat: Float32Array;
+  product_lng: number;
+  product_lat: number;
   PRODUCT_ROOMS: RoomType[];
 }
 

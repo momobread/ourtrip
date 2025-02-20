@@ -13,6 +13,7 @@ const MapForm = ({ formStyle, markers }) => {
 
   const handleChange = (e) => {
     const { lng, lat, title } = JSON.parse(e.target.value);
+    console.log(title, '지역');
     setLocation({ lng, lat });
     const params = new URLSearchParams(serachParams);
     params.set('location', title);
@@ -47,7 +48,7 @@ const MapForm = ({ formStyle, markers }) => {
           </div>
         </div>
       </div>
-      <CustomMap formStyle={formStyle} markers={markers} center={location} />
+      <CustomMap category="motel" formStyle={formStyle} markers={markers} center={location} />
     </div>
   );
 };

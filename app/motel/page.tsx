@@ -24,8 +24,7 @@ const page = async ({ searchParams }: pageProps) => {
   const filter = (await searchParams).filter ?? 'low_price';
   const currentPage = (await searchParams).page ?? '1';
   const itemPerPage = (await searchParams).count ?? '12';
-  const location = (await searchParams).location ?? 'seoul';
-
+  const location = (await searchParams).location ?? '서울';
   console.log(location);
   const { productData, totalItems, totalPages } = await fetchProducts({
     filter,
@@ -35,7 +34,13 @@ const page = async ({ searchParams }: pageProps) => {
     location,
   });
   const markers = productData.map((data, i) => {
-    return { id: i, lat: data.product_lat, lng: data.product_lng, title: data.product_name };
+    return {
+      id: i,
+      lat: data.product_lat,
+      lng: data.product_lng,
+      title: data.product_name,
+      product_num: data.product_num,
+    };
   });
   return (
     <>
