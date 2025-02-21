@@ -1,10 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-
-import { GoogleMap, Marker, InfoWindow, Circle, LoadScriptNext } from '@react-google-maps/api';
+import { useState } from 'react';
 import { ClipLoader } from 'react-spinners';
+
 import { GoogleMapMarkerType } from '@/app/_lib/types/params';
+import { GoogleMap, Marker, LoadScriptNext } from '@react-google-maps/api';
+// InfoWindow, Circle,
 
 const GOOGLE_MAPS_APIKEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_APIKEY ?? '';
 
@@ -48,9 +49,10 @@ const DetailLocation = ({ marker }: DetailLocationProps) => {
         setSelectMarker((premarker) => [
           ...premarker,
           {
-            id: selectMarker.length + 1,
+            id: selectMarker.length,
             lat: position.coords.latitude,
             lng: position.coords.longitude,
+            title: 'current position',
           },
         ]);
         setCurrentPosition({
@@ -68,7 +70,7 @@ const DetailLocation = ({ marker }: DetailLocationProps) => {
   const handleTilesLoaded = () => {
     setIsLoading(false); // 타일 로딩 완료되면 로딩 종료
   };
-
+  console.log(selectMarker);
   return (
     <div className="flex flex-col border border-primary-800 p-[2rem]">
       <p>위치정보</p>
@@ -95,13 +97,12 @@ const DetailLocation = ({ marker }: DetailLocationProps) => {
               strokeWeight: 2,
             }}
           /> */}
-
           {selectMarker.map((marker, i) => (
             <Marker
               key={marker.id}
               position={{ lat: marker.lat, lng: marker.lng }}
               title={marker.title}
-              onClick={() => setSelectMarker(marker)}
+              // onClick={() => setSelectMarker((marker) => [...marker])}
               icon={
                 i + 1 === selectMarker.length
                   ? `http://maps.google.com/mapfiles/ms/icons/green-dot.png`

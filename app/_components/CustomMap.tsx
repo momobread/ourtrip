@@ -68,9 +68,7 @@ const CustomMap = ({ formStyle, markers, center, category }: CustomMapStyle) => 
   // }, [currentPosition]);
 
   return (
-    <div
-      className={`flex flex-col items-center border border-primary-800 p-[2rem] ${formStyle} rounded-2xl`}
-    >
+    <div className={`flex flex-col items-center p-[2rem] ${formStyle} `}>
       <LoadScriptNext googleMapsApiKey={GOOGLE_MAPS_APIKEY}>
         <GoogleMap
           onTilesLoaded={handleTilesLoaded}

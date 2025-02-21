@@ -1,17 +1,22 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import CustomForm from '../CustomForm';
-import CustomMap from '../CustomMap';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { ChangeEvent, useState } from 'react';
 
-const MapForm = ({ formStyle, markers }) => {
+import CustomMap from '@/app/_components/CustomMap';
+import { GoogleMapMarkerType } from '@/app/_lib/types/params';
+
+interface MapFormProps {
+  formStyle: string;
+  markers: GoogleMapMarkerType[];
+}
+const MapForm = ({ formStyle, markers }: MapFormProps) => {
   const [location, setLocation] = useState({ lat: 37.5655, lng: 126.978 });
   const router = useRouter();
   const serachParams = useSearchParams();
   const pathname = usePathname();
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const { lng, lat, title } = JSON.parse(e.target.value);
     console.log(title, '지역');
     setLocation({ lng, lat });
@@ -23,7 +28,7 @@ const MapForm = ({ formStyle, markers }) => {
 
   return (
     <div className="flex h-[50rem] w-full justify-center">
-      <div className="flex w-[30%] flex-col items-center justify-center border border-primary-300">
+      <div className="flex w-[30%] flex-col items-center justify-center border-y border-l border-gray-400">
         <div className="flex w-[90%] flex-col gap-[1rem] bg-slate-200">
           <span className="text-[2.5rem]">서울을 기준으로 숙소를 안내하고 있어요</span>
           <div>

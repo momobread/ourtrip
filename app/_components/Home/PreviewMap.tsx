@@ -7,7 +7,7 @@ import CustomMap from '@/app/_components/CustomMap';
 import { GoogleMapMarkerType } from '@/app/_lib/types/params';
 
 const formStyle = `
-    w-[55rem] h-[45rem]
+    sm:w-[55rem] sm:h-[45rem] w-[80vw] h-[30rem] border border-primary-800 rounded-2xl
 `;
 
 interface PreviewMapProps {
@@ -31,11 +31,11 @@ const PreviewMap = ({ markers }: PreviewMapProps) => {
   };
 
   return (
-    <div className="mt-[3rem] flex h-[60rem] w-full flex-col items-center gap-[2rem]">
+    <div className="mt-[3rem] flex w-full flex-col items-center gap-[2rem] sm:h-[55rem]">
       <div className="">
         <select
           onChange={(e) => handleChange(e)}
-          className="mr-[1rem] w-[15rem] rounded-lg border border-primary-400 py-[1rem] text-center text-[2rem] font-semibold"
+          className="flex w-[100%] rounded-lg border border-primary-400 py-[1rem] text-center text-[2rem] font-semibold sm:mr-[1rem] sm:inline-block sm:w-[15rem]"
         >
           <option value={JSON.stringify({ lat: 37.5655, lng: 126.978, title: '서울' })}>
             서울

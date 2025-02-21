@@ -8,7 +8,7 @@ import Header from '@/app/_components/layout/Header';
 const textNoto = Noto_Sans_KR({
   subsets: ['latin'],
   display: 'swap',
-  weight: '300',
+  weight: '400',
 });
 
 export const metadata: Metadata = {

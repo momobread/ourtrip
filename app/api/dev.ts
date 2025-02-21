@@ -135,21 +135,21 @@ const makeProductsBeta = async () => {
   }
 };
 
-const test = async () => {
-  const { data } = await axios.get(
-    `${SUPABASE_URL}/rest/v1/PRODUCTS`,
+// const test = async () => {
+//   const { data } = await axios.get(
+//     `${SUPABASE_URL}/rest/v1/PRODUCTS`,
 
-    {
-      headers: {
-        apikey: SUPABASE_KEY,
-        Authorization: `Bearer ${SUPABASE_KEY}`,
-        'Content-Type': 'applictaion/json',
-      },
-      params: {
-        product_category: 'eq.1',
-      },
-    }
-  );
+//     {
+//       headers: {
+//         apikey: SUPABASE_KEY,
+//         Authorization: `Bearer ${SUPABASE_KEY}`,
+//         'Content-Type': 'applictaion/json',
+//       },
+//       params: {
+//         product_category: 'eq.1',
+//       },
+//     }
+//   );
 
   // const response2 = await Promise.all(
   //   data.map(async (v) => {
@@ -160,4 +160,4 @@ const test = async () => {
   //   })
   // );
 };
-export { makeProductsBeta, test };
+// export { makeProductsBeta, test };

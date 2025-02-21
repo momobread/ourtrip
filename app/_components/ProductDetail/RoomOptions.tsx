@@ -1,8 +1,8 @@
-import Image from 'next/image';
-import CustomDate from '../CustomDate';
-import { RoomType } from '@/app/_lib/types/product';
-import Room from './Room';
 import { differenceInDays } from 'date-fns';
+
+import CustomDate from '@/app/_components/CustomDate';
+import Room from '@/app/_components/ProductDetail/Room';
+import { RoomType } from '@/app/_lib/types/product';
 
 interface RoomOptionsProps {
   data: RoomType[];

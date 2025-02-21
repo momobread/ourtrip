@@ -1,4 +1,5 @@
 import Image from 'next/image';
+
 import { RoomType } from '@/app/_lib/types/product';
 import { priceFormat } from '@/app/_lib/utils/format';
 

@@ -1,10 +1,7 @@
-import axios from 'axios';
-
-import DetailInform from '@/app/_components/ProductDetail/DetailInform';
-import { fetchProduct } from '@/app/api/product/product';
 import MainNav from '@/app/_components/layout/MainNav';
+import DetailInform from '@/app/_components/ProductDetail/DetailInform';
 import RoomOptions from '@/app/_components/ProductDetail/RoomOptions';
-import { fetchRooms } from '@/app/api/product/detail/route';
+import { fetchProduct } from '@/app/api/product/product';
 
 const page = async ({ params, searchParams }) => {
   const productId = (await params)?.motelId ?? '';

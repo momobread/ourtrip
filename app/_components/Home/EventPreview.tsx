@@ -5,7 +5,7 @@ import EventCard from '@/app/_components/Home/EventCard';
 const EventPrivew = (): JSX.Element => {
   return (
     <div className="mb-[5rem] flex justify-center">
-      <div className="flex gap-[2rem] px-[5rem] py-[1rem]">
+      <div className="flex flex-col gap-[2rem] px-[2rem] py-[1rem] sm:flex-row sm:px-[5rem]">
         <EventCard
           img="/bg2.jpg"
           title="매일매일 출석체크"

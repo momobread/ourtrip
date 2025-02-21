@@ -17,6 +17,7 @@ export async function PATCH(req: Request) {
         user_id: `eq.${uuid}`,
       },
     });
+
     console.log(data);
     // 테이블을 새로 설계했으니, productlist와 productdetail에서 데이터를 가져오는 api부분 수정필요함
     //그리고 커스텀엔드포인트로 서버에서 axios 날린거 바꾸기 => 서버에서는 fetch로 날리고 api안에서 axios로 날리고
