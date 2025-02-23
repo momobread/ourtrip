@@ -63,7 +63,7 @@ const ProductPageNation = ({ pages }: ProductPageNationProps) => {
       {pageList.map((v) => (
         <a
           key={v + 1}
-          className={`${PageButtonStyle} ${Number(activeNavigateion) === v + 1 ? 'bg-accent-300' : ''}`}
+          className={`${PageButtonStyle} ${Number(activeNavigateion) === v + 1 ? 'bg-primary-100' : ''}`}
           onClick={() => handleButton(v + 1)}
         >
           {v + 1}

@@ -19,6 +19,7 @@ const page = async ({ params, searchParams }) => {
         </section>
       </main>
     </>
+    //
   );
 };
 export default page;
