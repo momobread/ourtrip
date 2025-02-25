@@ -1,6 +1,7 @@
 'use client';
 
 import { addDays, format, subDays } from 'date-fns';
+import { ko } from 'date-fns/locale';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { DateRange, DayPicker } from 'react-day-picker';
@@ -43,23 +44,36 @@ const CustomDate = () => {
   };
   console.log(range);
   return (
-    <div className="flex items-center justify-center gap-[1rem] border border-primary-600">
-      <div className="flex flex-col">
+    <div className="flex mb-[3rem]  flex-col justify-center items-center bg-primary-50 rounded-xl py-[3rem]">
+      <DayPicker
+      locale={ko}
+        mode="range"
+        selected={range}
+        style={{borderRadius :'0.7rem', padding : "2rem" ,backgroundColor : 'white'}}
+        numberOfMonths={2}  
+        onSelect={handleSelect}
+        min={1}
+        classNames={
+          {
+            today : ' font-bold text-sky-400 ', //
+            selected : '',
+            range_start : 'bg-amber-200 text-amber-500 font-bold rounded-l-full',
+            range_middle : 'bg-amber-200 ',
+            range_end : 'bg-amber-200 text-amber-500 font-bold rounded-r-full',
+          
+          }
+        }
+        disabled={(date) => date < subDays(new Date(), 1)}
+      />
+        <div className="flex flex-col">
         <span>선택된날짜</span>
         <span>
           {format(`${range?.from}`, 'yyyy-MM-dd')} ~ {format(`${range?.to}`, 'yyyy-MM-dd')}
         </span>
-        <button className="bg-amber-400 p-[1rem]" onClick={handleClick}>
+        <button className="bg-primary-300 p-[1rem] rounded-lg" onClick={handleClick}>
           검색하기
         </button>
       </div>
-      <DayPicker
-        mode="range"
-        selected={range}
-        onSelect={handleSelect}
-        min={1}
-        disabled={(date) => date < subDays(new Date(), 1)}
-      />
     </div>
   );
 };

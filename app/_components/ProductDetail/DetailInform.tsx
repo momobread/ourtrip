@@ -6,7 +6,7 @@ import DetailLocation from '@/app/_components/ProductDetail/DetailLocation';
 import PreviewReview from '@/app/_components/ProductDetail/PreviewReview';
 import SessionWrapper from '@/app/_components/Session/SessionWrapper';
 import { GoogleMapMarkerType } from '@/app/_lib/types/params';
-import { ProductType } from '@/app/_lib/types/product';
+import { ProductType, RoomType } from '@/app/_lib/types/product';
 import { priceFormat } from '@/app/_lib/utils/format';
 
 interface DetailInformProps {
@@ -17,15 +17,25 @@ interface DetailInformProps {
 const IconStyle = `absolute right-0 top-[2rem] flex`;
 
 const DetailInform = ({ data, marker }: DetailInformProps) => {
-  const { product_content, product_img, product_liked, product_name, product_price, product_num } =
-    data;
+  const { product_content, product_img, product_liked, product_name, product_price, product_num,PRODUCT_ROOMS } =
+  data;
+// const {} = PRODUCT_ROOMS as RoomType[];
   return (
     <div className="">
-      <div className="flex flex-col items-center">
-        <div className="relative h-[50rem] w-[60%] border-b border-grey-900">
+      <div className="flex flex-col items-center ]">
+        <div className="h-[60rem] w-[64%] border-b border-grey-900 flex gap-[1%]">
+          <div className='relative w-[50%] h-full'>
           <Image src={product_img} fill alt={`${product_num}`} />
+          </div>
+          <ul className='flex w-[50%] flex-wrap bg-slate-200 gap-[2%] justify-center items-center flex-1'>
+          {PRODUCT_ROOMS?.map((room : RoomType)=>
+          <li className='w-[49%]  relative h-[49%]'>
+            <Image src={room.room_image} fill alt={`${room.room_image}`} key={room.room_image}/>
+          </li>
+          )}
+          </ul>
         </div>
-        <div className="relative my-[1rem] flex w-[60%] flex-col gap-[0.5rem]">
+        <div className="relative my-[1rem] flex w-[64%] flex-col gap-[0.5rem]">
           <span className="text-[3.5rem] font-semibold">{product_name}</span>
           <div className="flex justify-between">
             <p>{product_content}</p>

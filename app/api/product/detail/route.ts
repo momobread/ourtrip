@@ -46,3 +46,26 @@ export async function PATCH(req: Request) {
     return NextResponse.json({ status: 400 });
   }
 }
+
+export async function POST(req : Request){
+  const {product_num} = await req.json()
+  try {
+    const { data } = await axios.get(`${SUPABASE_URL}/rest/v1/PRODUCTS`, {
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      params: {
+        select: '*,PRODUCT_ROOMS(*)',
+        product_num: `eq.${product_num}`,
+      },
+    });
+    if (!data) throw new Error('아이템디테일 리스트가 비었습니다다');
+    return NextResponse.json(data?.[0]);
+  } catch (e) {
+    const errorMessage = e instanceof Error ? e.message: "아이템디테일 패칭에 실패하였습니다다"
+    return NextResponse.json(errorMessage)
+  }
+
+}
