@@ -42,7 +42,7 @@ const CustomDate = () => {
     params.set('checkOut', `${format(range?.to, 'yyyy-MM-dd')}`);
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   };
-  console.log(range);
+  // console.log(range);
   return (
     <div className="mb-[3rem] flex flex-col items-center justify-center rounded-xl bg-primary-50 py-[3rem]">
       <DayPicker

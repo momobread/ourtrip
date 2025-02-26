@@ -30,7 +30,7 @@ const DetailInform = ({ data, marker }: DetailInformProps) => {
 
   return (
     <div className="">
-      <div className="] flex flex-col items-center">
+      <div className="flex flex-col items-center">
         <div className="flex h-[60rem] w-[64%] gap-[1%]">
           <div className="relative h-full w-[50%]">
             <Image src={product_img} fill alt={`${product_num}`} className="rounded-xl" />

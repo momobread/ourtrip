@@ -126,9 +126,9 @@ const MainNav = () => {
             </span>
           </li>
         </Link>
-        <Link href="/test">
+        {/* <Link href="/test">
           <li>dev</li>
-        </Link>
+        </Link> */}
       </div>
     </nav>
   );

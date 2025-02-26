@@ -73,7 +73,7 @@ const CustomIcon = async ({ style, product_num, children, likeCount }) => {
       headers: {},
       body: JSON.stringify({
         product_num,
-        likeCount: likeCount + 1,
+        likeCount: likeCount,
         uuid: user?.id,
       }),
     });

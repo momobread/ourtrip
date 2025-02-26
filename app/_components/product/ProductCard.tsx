@@ -3,7 +3,6 @@ import Link from 'next/link';
 
 import { ProductType } from '@/app/_lib/types/product';
 import { priceFormat } from '@/app/_lib/utils/format';
-import { usePathname } from 'next/navigation';
 
 const ProductCard = ({ data, category }: { data: ProductType; category: string }) => {
   const { product_content, product_liked, product_name, product_price, product_img, product_num } =
