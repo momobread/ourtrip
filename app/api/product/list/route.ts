@@ -47,6 +47,7 @@ export async function POST(req: Request) {
       lng: { min: 128.5, max: 128.72 },
     };
   }
+
   try {
     const response = await axios.get(`${SUPABASE_URL}/rest/v1/PRODUCTS`, {
       headers: {
@@ -59,13 +60,12 @@ export async function POST(req: Request) {
         product_category: `eq.${category}`,
         product_lng: [`gte.${locationFilter?.lng.min}`, `lte.${locationFilter?.lng.max}`],
         product_lat: [`gte.${locationFilter?.lat.min}`, `lte.${locationFilter?.lat.max}`],
-        // 'product_lat.gte': locationFilter?.lat.min,
-        // 'product_lat.lte': locationFilter?.lat.max,
         order: `${filterOption}`,
         limit: Number(itemPerPage),
         offset: (Number(currentPage) - 1) * Number(itemPerPage),
       },
     });
+
     if (!response?.data) throw new Error('상품리스트 데이터가 없습니다');
 
     const countResponse = await axios.get(`${SUPABASE_URL}/rest/v1/PRODUCTS`, {

@@ -7,7 +7,7 @@ const MainNav = () => {
 
   return (
     <nav className="flex h-[10rem] items-center justify-center sm:h-[18rem]">
-      <div className="bg-primary-50 flex w-full justify-center sm:gap-14 sm:rounded-2xl sm:px-[2rem] sm:py-[1rem]">
+      <div className="flex w-full justify-center bg-primary-50 sm:gap-14 sm:rounded-2xl sm:px-[2rem] sm:py-[1rem]">
         <Link href="/motel?page=1&filter=low_price&count=12&location=서울">
           <li className="group flex flex-col items-center justify-center p-[1rem] hover:rounded-lg hover:bg-white">
             <svg
@@ -31,7 +31,7 @@ const MainNav = () => {
             </span>
           </li>
         </Link>
-        <Link href="/hotel?page=1&filter=low_price&count=12">
+        <Link href="/hotel?page=1&filter=low_price&count=12&location=서울">
           <li className="group flex flex-col items-center justify-center p-[1rem] hover:rounded-lg hover:bg-white">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +54,7 @@ const MainNav = () => {
             </span>
           </li>
         </Link>
-        <Link href="/guest?page=1&filter=low_price&count=12">
+        <Link href="/guest?page=1&filter=low_price&count=12&location=서울">
           <li className="group flex flex-col items-center justify-center p-[1rem] hover:rounded-lg hover:bg-white">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -125,6 +125,9 @@ const MainNav = () => {
               공연/축제
             </span>
           </li>
+        </Link>
+        <Link href="/test">
+          <li>dev</li>
         </Link>
       </div>
     </nav>

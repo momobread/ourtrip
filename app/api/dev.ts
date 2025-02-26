@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_KEY;
-const makeProductsBeta = async () => {
+export const makeProductsBeta = async () => {
   console.log(SUPABASE_URL, 'dsdsd');
   try {
     // eslint-disable-next-line
@@ -10,114 +10,128 @@ const makeProductsBeta = async () => {
       `${SUPABASE_URL}/rest/v1/PRODUCTS`,
       [
         {
-          product_name: '가가호텔',
-          product_price: 135000,
+          product_num: 10136,
+          product_name: '일일호텔',
+          product_price: 185000,
           product_content: '게하~~ 반가워요',
-          product_category: 1,
+          product_category: 2,
           product_img:
             'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img/po_accommdation/hotel2.jpg',
         },
         {
-          product_name: '나나호텔',
-          product_price: 145000,
+          product_num: 10137,
+          product_name: '이이호텔',
+          product_price: 186000,
           product_content: '게하~~ 반가워요',
-          product_category: 1,
+          product_category: 2,
           product_img:
             'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img/po_accommdation/hotel2.jpg',
         },
         {
-          product_name: '다다호텔',
-          product_price: 155000,
+          product_num: 10138,
+          product_name: '삼삼호텔',
+          product_price: 187000,
           product_content: '게하~~ 반가워요',
-          product_category: 1,
+          product_category: 2,
           product_img:
             'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img/po_accommdation/hotel2.jpg',
         },
         {
-          product_name: '라라호텔',
-          product_price: 165000,
-          product_content: '게하~~ 반가워요',
-          product_category: 1,
-          product_img:
-            'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img/po_accommdation/hotel2.jpg',
-        },
-        {
-          product_name: '마마호텔',
-          product_price: 4923300,
-          product_content: '게하~~ 반가워요',
-          product_category: 1,
-          product_img:
-            'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img/po_accommdation/hotel2.jpg',
-        },
-        {
-          product_name: '바바호텔',
-          product_price: 175000,
-          product_content: '게하~~ 반가워요',
-          product_category: 1,
-          product_img:
-            'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img/po_accommdation/hotel2.jpg',
-        },
-        {
+          product_num: 10139,
           product_name: '사사호텔',
-          product_price: 472300,
+          product_price: 188000,
           product_content: '게하~~ 반가워요',
-          product_category: 1,
+          product_category: 2,
           product_img:
             'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img/po_accommdation/hotel2.jpg',
         },
         {
-          product_name: '아아호텔',
-          product_price: 111100,
+          product_num: 10140,
+          product_name: '오오호텔',
+          product_price: 189000,
           product_content: '게하~~ 반가워요',
-          product_category: 1,
+          product_category: 2,
           product_img:
             'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img/po_accommdation/hotel2.jpg',
         },
         {
-          product_name: '자자호텔',
-          product_price: 123000,
+          product_num: 10141,
+          product_name: '육육호텔',
+          product_price: 170000,
           product_content: '게하~~ 반가워요',
-          product_category: 1,
+          product_category: 2,
           product_img:
             'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img/po_accommdation/hotel2.jpg',
         },
         {
-          product_name: '차차호텔',
-          product_price: 640000,
+          product_num: 10142,
+          product_name: '칠칠호텔',
+          product_price: 171000,
           product_content: '게하~~ 반가워요',
-          product_category: 1,
+          product_category: 2,
           product_img:
             'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img/po_accommdation/hotel2.jpg',
         },
         {
-          product_name: '카카호텔',
-          product_price: 630000,
+          product_num: 10143,
+          product_name: '팔팔호텔',
+          product_price: 172000,
           product_content: '게하~~ 반가워요',
-          product_category: 1,
+          product_category: 2,
           product_img:
             'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img/po_accommdation/hotel2.jpg',
         },
         {
-          product_name: '타타호텔',
-          product_price: 420000,
+          product_num: 10144,
+          product_name: '구구호텔',
+          product_price: 10000,
           product_content: '게하~~ 반가워요',
-          product_category: 1,
+          product_category: 2,
           product_img:
             'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img/po_accommdation/hotel2.jpg',
         },
         {
-          product_name: '파호텔',
-          product_price: 410000,
+          product_num: 10145,
+          product_name: '십십십호텔',
+          product_price: 713000,
           product_content: '게하~~ 반가워요',
-          product_category: 1,
+          product_category: 2,
           product_img:
             'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img/po_accommdation/hotel2.jpg',
         },
         {
-          product_name: '하하호텔',
-          product_price: 650000,
+          product_num: 10146,
+          product_name: '십일일일호텔',
+          product_price: 74500,
           product_content: '게하~~ 반가워요',
-          product_category: 1,
+          product_category: 2,
+          product_img:
+            'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img/po_accommdation/hotel2.jpg',
+        },
+        {
+          product_num: 10147,
+          product_name: '십이이이호텔',
+          product_price: 75500,
+          product_content: '게하~~ 반가워요',
+          product_category: 2,
+          product_img:
+            'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img/po_accommdation/hotel2.jpg',
+        },
+        {
+          product_num: 10148,
+          product_name: '십삼삼삼호텔',
+          product_price: 76500,
+          product_content: '게하~~ 반가워요',
+          product_category: 2,
+          product_img:
+            'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img/po_accommdation/hotel2.jpg',
+        },
+        {
+          product_num: 10149,
+          product_name: '십사사사호텔',
+          product_price: 77500,
+          product_content: '게하~~ 반가워요',
+          product_category: 2,
           product_img:
             'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img/po_accommdation/hotel2.jpg',
         },
@@ -146,18 +160,18 @@ const makeProductsBeta = async () => {
 //         'Content-Type': 'applictaion/json',
 //       },
 //       params: {
-//         product_category: 'eq.1',
+//         product_category: 'eq.2',
 //       },
 //     }
 //   );
 
-  // const response2 = await Promise.all(
-  //   data.map(async (v) => {
-  //     axios.post(`${SUPABASE_URL}/rest/v1/PRODUCTS`, {
-  //       product_lat,
-  //       product_lng,
-  //     });
-  //   })
-  // );
-};
+// const response2 = await Promise.all(
+//   data.map(async (v) => {
+//     axios.post(`${SUPABASE_URL}/rest/v1/PRODUCTS`, {
+//       product_lat,
+//       product_lng,
+//     });
+//   })
+// );
+// };
 // export { makeProductsBeta, test };

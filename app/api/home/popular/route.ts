@@ -28,7 +28,7 @@ export async function GET() {
 }
 
 export async function POST(req: Response) {
-  const { filterLocation } = await req.json();
+  const { filterLocation, category } = await req.json();
   let locationFilter;
   if (filterLocation === '서울')
     locationFilter = {
@@ -60,7 +60,6 @@ export async function POST(req: Response) {
     };
   }
 
-  const category = '1';
   try {
     const { data } = await axios.get(`${SUPABASE_URL}/rest/v1/PRODUCTS`, {
       headers: {

@@ -3,14 +3,15 @@ import Link from 'next/link';
 
 import { ProductType } from '@/app/_lib/types/product';
 import { priceFormat } from '@/app/_lib/utils/format';
+import { usePathname } from 'next/navigation';
 
-const ProductCard = ({ data }: { data: ProductType }) => {
+const ProductCard = ({ data, category }: { data: ProductType; category: string }) => {
   const { product_content, product_liked, product_name, product_price, product_img, product_num } =
     data;
-  // console.log(product_category);
+
   return (
     <li className="relative flex h-[45rem] w-[30rem] flex-col items-center justify-center rounded-xl border border-grey-400">
-      <Link href={`/motel/${product_num}`}>
+      <Link href={`/${category}/${product_num}`}>
         <p className="absolute right-[1rem] top-[1rem] z-30 flex">
           <span>{product_liked}</span>
           <svg

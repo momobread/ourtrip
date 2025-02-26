@@ -34,7 +34,17 @@ const page = async ({ searchParams }: pageProps) => {
   )) as { data: { productData: ProductType[]; totalItems: number; totalPages: number } };
   const { productData, totalItems, totalPages } = productResponse?.data;
 
-  const markers: GoogleMapMarkerType[] = productData.map((data: ProductType, i: number) => {
+  const mapResponse = await axios.post(
+    `${NEXTURL}/api/home/popular`,
+    {
+      filterLocation: location,
+      category: '1',
+    },
+    {}
+  );
+  const mapData = mapResponse?.data;
+
+  const markers: GoogleMapMarkerType[] = mapData.map((data: ProductType, i: number) => {
     return {
       id: i,
       lat: data.product_lat,
@@ -57,7 +67,7 @@ const page = async ({ searchParams }: pageProps) => {
               <SideNav totalItems={totalItems} />
             </div>
 
-            <ProductList productData={productData} />
+            <ProductList productData={productData} category="motel" />
             <ProductPageNation pages={totalPages} />
           </div>
         </section>

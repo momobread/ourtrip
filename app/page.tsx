@@ -30,6 +30,7 @@ export default async function Home({
     `${NEXTURL}/api/home/popular`,
     {
       filterLocation,
+      category: '1',
     },
     {}
   );
