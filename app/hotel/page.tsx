@@ -3,7 +3,7 @@ import ProductList from '@/app/_components/product/ProductList';
 import ProductOptions from '@/app/_components/product/ProductOptions';
 import ProductPageNation from '@/app/_components/product/ProductPageNation';
 import SideNav from '@/app/_components/product/SideNav';
-import { fetchProducts } from '@/app/api/product/product';
+// import { fetchProducts } from '@/app/api/product/product';
 
 interface pageProps {
   searchParams: Record<string, string>;

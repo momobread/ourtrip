@@ -44,33 +44,30 @@ const CustomDate = () => {
   };
   console.log(range);
   return (
-    <div className="flex mb-[3rem]  flex-col justify-center items-center bg-primary-50 rounded-xl py-[3rem]">
+    <div className="mb-[3rem] flex flex-col items-center justify-center rounded-xl bg-primary-50 py-[3rem]">
       <DayPicker
-      locale={ko}
+        locale={ko}
         mode="range"
         selected={range}
-        style={{borderRadius :'0.7rem', padding : "2rem" ,backgroundColor : 'white'}}
-        numberOfMonths={2}  
+        style={{ borderRadius: '0.7rem', padding: '2rem', backgroundColor: 'white' }}
+        numberOfMonths={2}
         onSelect={handleSelect}
         min={1}
-        classNames={
-          {
-            today : ' font-bold text-sky-400 ', //
-            selected : '',
-            range_start : 'bg-amber-200 text-amber-500 font-bold rounded-l-full',
-            range_middle : 'bg-amber-200 ',
-            range_end : 'bg-amber-200 text-amber-500 font-bold rounded-r-full',
-          
-          }
-        }
+        classNames={{
+          today: ' font-bold text-sky-400 ', //
+          selected: '',
+          range_start: 'bg-amber-200 text-amber-500 font-bold rounded-l-full',
+          range_middle: 'bg-amber-200 ',
+          range_end: 'bg-amber-200 text-amber-500 font-bold rounded-r-full',
+        }}
         disabled={(date) => date < subDays(new Date(), 1)}
       />
-        <div className="flex flex-col">
+      <div className="flex flex-col">
         <span>선택된날짜</span>
         <span>
           {format(`${range?.from}`, 'yyyy-MM-dd')} ~ {format(`${range?.to}`, 'yyyy-MM-dd')}
         </span>
-        <button className="bg-primary-300 p-[1rem] rounded-lg" onClick={handleClick}>
+        <button className="rounded-lg bg-primary-300 p-[1rem] text-white" onClick={handleClick}>
           검색하기
         </button>
       </div>

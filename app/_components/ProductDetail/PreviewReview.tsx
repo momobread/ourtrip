@@ -1,6 +1,6 @@
 const PreviewReview = () => {
   return (
-    <div className="w-[50%] border border-primary-900">
+    <div className="h-[18rem] w-[50%] rounded-xl border border-slate-400 p-[1rem]">
       <div>
         <span>⭐️3.3</span>
         <span>xxxx명 평가 href</span>

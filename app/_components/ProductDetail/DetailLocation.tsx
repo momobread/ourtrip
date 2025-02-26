@@ -20,9 +20,10 @@ const containerStyle = {
 
 interface DetailLocationProps {
   marker: GoogleMapMarkerType;
+  location: string;
 }
 type currentPositionType = { lng: number; lat: number };
-const DetailLocation = ({ marker }: DetailLocationProps) => {
+const DetailLocation = ({ marker, location }: DetailLocationProps) => {
   const [currentPosition, setCurrentPosition] = useState<currentPositionType>({
     lng: marker?.lng,
     lat: marker?.lat,
@@ -72,10 +73,30 @@ const DetailLocation = ({ marker }: DetailLocationProps) => {
   };
   console.log(selectMarker);
   return (
-    <div className="flex flex-col border border-primary-800 p-[2rem]">
-      <p>위치정보</p>
-      <p>부산 광역시 어쩌고어저고</p>
-      <p>지도보기 하이퍼링크</p>
+    <div className="flex flex-col gap-[1rem] rounded-xl border border-slate-400 p-[2rem]">
+      <div className="flex items-center">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="size-8 text-blue-500"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+          />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+          />
+        </svg>
+        <p className="font-medium">{location}</p>
+      </div>
+
       <LoadScriptNext googleMapsApiKey={GOOGLE_MAPS_APIKEY}>
         <GoogleMap
           mapContainerStyle={containerStyle}

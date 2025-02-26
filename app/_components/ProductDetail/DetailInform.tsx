@@ -14,28 +14,42 @@ interface DetailInformProps {
   marker: GoogleMapMarkerType;
 }
 
-const IconStyle = `absolute right-0 top-[2rem] flex`;
+const IconStyle = `absolute right-0 top-[2rem] flex items-center`;
 
 const DetailInform = ({ data, marker }: DetailInformProps) => {
-  const { product_content, product_img, product_liked, product_name, product_price, product_num,PRODUCT_ROOMS } =
-  data;
-// const {} = PRODUCT_ROOMS as RoomType[];
+  const {
+    product_content,
+    product_img,
+    product_location,
+    product_liked,
+    product_name,
+    product_price,
+    product_num,
+    PRODUCT_ROOMS,
+  } = data;
+
   return (
     <div className="">
-      <div className="flex flex-col items-center ]">
-        <div className="h-[60rem] w-[64%] border-b border-grey-900 flex gap-[1%]">
-          <div className='relative w-[50%] h-full'>
-          <Image src={product_img} fill alt={`${product_num}`} />
+      <div className="] flex flex-col items-center">
+        <div className="flex h-[60rem] w-[64%] gap-[1%]">
+          <div className="relative h-full w-[50%]">
+            <Image src={product_img} fill alt={`${product_num}`} className="rounded-xl" />
           </div>
-          <ul className='flex w-[50%] flex-wrap bg-slate-200 gap-[2%] justify-center items-center flex-1'>
-          {PRODUCT_ROOMS?.map((room : RoomType)=>
-          <li className='w-[49%]  relative h-[49%]'>
-            <Image src={room.room_image} fill alt={`${room.room_image}`} key={room.room_image}/>
-          </li>
-          )}
+          <ul className="flex w-[50%] flex-1 flex-wrap items-center justify-center gap-[2%] bg-slate-200">
+            {PRODUCT_ROOMS?.map((room: RoomType) => (
+              <li className="relative h-[49%] w-[49%]" key={room.room_name}>
+                <Image
+                  src={room.room_image}
+                  fill
+                  alt={`${room.room_image}`}
+                  key={room.room_image}
+                  className="rounded-xl"
+                />
+              </li>
+            ))}
           </ul>
         </div>
-        <div className="relative my-[1rem] flex w-[64%] flex-col gap-[0.5rem]">
+        <div className="relative my-[1rem] flex w-[64%] flex-col gap-[1rem]">
           <span className="text-[3.5rem] font-semibold">{product_name}</span>
           <div className="flex justify-between">
             <p>{product_content}</p>
@@ -55,10 +69,11 @@ const DetailInform = ({ data, marker }: DetailInformProps) => {
             </CustomIcon>
           </SessionWrapper>
 
-          <DetailLocation marker={marker} />
+          <span className="my-[1rem] inline-block text-[2.5rem] font-bold">위치정보</span>
+          <DetailLocation marker={marker} location={product_location} />
           <div className="flex gap-[1rem]">
             <PreviewReview />
-            <Amenities />
+            <Amenities product_num={product_num} />
           </div>
         </div>
       </div>

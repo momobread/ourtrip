@@ -1,7 +1,8 @@
+import axios from 'axios';
+
 import MainNav from '@/app/_components/layout/MainNav';
 import DetailInform from '@/app/_components/ProductDetail/DetailInform';
 import RoomOptions from '@/app/_components/ProductDetail/RoomOptions';
-import axios from 'axios';
 
 const NEXTURL = process.env.NEXTAUTH_URL;
 
