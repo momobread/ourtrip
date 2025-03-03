@@ -3,11 +3,12 @@ import Image from 'next/image';
 import CustomIcon from '@/app/_components/CustomIcon';
 import Amenities from '@/app/_components/ProductDetail/Amenities';
 import DetailLocation from '@/app/_components/ProductDetail/DetailLocation';
-import PreviewReview from '@/app/_components/ProductDetail/PreviewReview';
+import PreviewReview from '@/app/_components/Review/PreviewReview';
 import SessionWrapper from '@/app/_components/Session/SessionWrapper';
 import { GoogleMapMarkerType } from '@/app/_lib/types/params';
 import { ProductType, RoomType } from '@/app/_lib/types/product';
 import { priceFormat } from '@/app/_lib/utils/format';
+import { ReviewType } from '@/app/_lib/types/review';
 
 interface DetailInformProps {
   data: ProductType;
@@ -16,7 +17,9 @@ interface DetailInformProps {
 
 const IconStyle = `absolute right-0 top-[2rem] flex items-center`;
 
-const DetailInform = ({ data, marker }: DetailInformProps) => {
+const NEXTURL = process.env.NEXTAUTH_URL;
+
+const DetailInform = async ({ data, marker }: DetailInformProps) => {
   const {
     product_content,
     product_img,
@@ -27,6 +30,15 @@ const DetailInform = ({ data, marker }: DetailInformProps) => {
     product_num,
     PRODUCT_ROOMS,
   } = data;
+
+  const reviewResponse = await fetch(`${NEXTURL}/api/product/review`, {
+    method: 'POST',
+    headers: {},
+    body: JSON.stringify({
+      product_num,
+    }),
+  });
+  const reviewData: ReviewType[] = await reviewResponse.json();
 
   return (
     <div className="">
@@ -72,7 +84,7 @@ const DetailInform = ({ data, marker }: DetailInformProps) => {
           <span className="my-[1rem] inline-block text-[2.5rem] font-bold">위치정보</span>
           <DetailLocation marker={marker} location={product_location} />
           <div className="flex gap-[1rem]">
-            <PreviewReview />
+            <PreviewReview reviewData={reviewData} />
             <Amenities product_num={product_num} />
           </div>
         </div>

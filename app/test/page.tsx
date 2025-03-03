@@ -12,3 +12,7 @@
 //     </form>
 //   );
 // }
+
+export default function TEst2() {
+  return <p>이페이지는 원래 test페이지입니다</p>;
+}

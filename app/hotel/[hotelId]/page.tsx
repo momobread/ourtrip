@@ -21,10 +21,12 @@ const page = async ({ params, searchParams }: PageProps) => {
     },
     {}
   );
+
   const productData = productDetailData?.data;
   const { product_lng, product_lat, product_name, PRODUCT_ROOMS, product_num } = productData;
   const marker = { id: 0, lat: product_lat, lng: product_lng, title: product_name, product_num };
   const date = { checkIn: (await searchParams)?.checkIn, checkOut: (await searchParams)?.checkOut };
+
   return (
     <>
       <MainNav />
