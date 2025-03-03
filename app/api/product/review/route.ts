@@ -15,6 +15,7 @@ export async function POST(req: Request) {
 
       params: {
         product_num: `eq.${product_num}`,
+        select: '*, USER(user_name)',
       },
     });
 
@@ -23,7 +24,10 @@ export async function POST(req: Request) {
 
     const reviewData = await Promise.all(
       data?.map((review) => {
-        return { ...review, review_img: review?.review_img === '' ? [] : [review?.review_img] };
+        return {
+          ...review,
+          review_img: review?.review_img === '' ? [] : review?.review_img,
+        };
       })
     );
 
