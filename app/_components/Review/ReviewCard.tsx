@@ -18,7 +18,7 @@ export default function ReviewCard({ review, type }: ReviewCardProps) {
 
   const { review_content, review_title, review_rate, review_img, created_at, review_user, USER } =
     review;
-  console.log(review);
+
   const previewformatDate = format(created_at, 'MM-dd');
   if (type === 'preview')
     return (
