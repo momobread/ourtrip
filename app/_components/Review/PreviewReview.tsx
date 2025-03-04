@@ -8,9 +8,10 @@ import { useSession } from 'next-auth/react';
 
 interface PreviewReviewProps {
   reviewData: ReviewType[];
+  product_num: string;
 }
 
-const PreviewReview = ({ reviewData }: PreviewReviewProps) => {
+const PreviewReview = ({ reviewData, product_num }: PreviewReviewProps) => {
   const [isClick, setIsClick] = useState<boolean>(false);
 
   const previewReview = reviewData?.slice(0, 2);
@@ -29,7 +30,7 @@ const PreviewReview = ({ reviewData }: PreviewReviewProps) => {
           <span> / </span>
           <span className="text-gray-500">리뷰 {reviewCount ? reviewCount : 0}명</span>
         </p>
-        <button className="text-myred-300 ml-[1rem] font-bold" onClick={() => setIsClick(true)}>
+        <button className="ml-[1rem] font-bold text-myred-300" onClick={() => setIsClick(true)}>
           전체보기
         </button>
       </div>
@@ -41,7 +42,7 @@ const PreviewReview = ({ reviewData }: PreviewReviewProps) => {
           <ReviewCard review={previewReview} type="preview" />
         )}
       </div>
-      {isClick && <ReviewModal data={reviewData} onClick={setIsClick} />}
+      {isClick && <ReviewModal data={reviewData} onClick={setIsClick} product_num={product_num} />}
     </div>
   );
 };

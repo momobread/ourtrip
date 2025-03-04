@@ -6,7 +6,6 @@ const SUPABASE_KEY = process.env.SUPABASE_KEY;
 
 export async function GET() {
   try {
-    console.log('야호');
     const { data } = (await axios.get(`${SUPABASE_URL}/rest/v1/APP_PRE_IMAGE`, {
       headers: {
         'Content-Type': 'application/json',

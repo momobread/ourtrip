@@ -3,28 +3,32 @@ import React, { Dispatch, ReactNode, useState } from 'react';
 import ReviewCard from './ReviewCard';
 import { useSession } from 'next-auth/react';
 import CustomModal from '../CustomModal';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 interface ReviewModalProps {
   data: ReviewType[];
   onClick: Dispatch<React.SetStateAction<boolean>>;
+  product_num: string;
 }
-function ReviewModal({ data, onClick }: ReviewModalProps) {
+function ReviewModal({ data, onClick, product_num }: ReviewModalProps) {
   const { data: user } = useSession();
   const [isClick, setIsClick] = useState<boolean>(false);
+  const router = useRouter();
 
+  console.log(user);
   const handleWriteButton = () => {
     if (!user?.user) {
-      console.log('로그인하세요');
+      setIsClick(true);
       return;
     }
-    setIsClick(true);
+    router.replace(`/review/${product_num}`);
   };
   return (
     <div id="overlay" className="fixed left-0 top-0 z-50 h-screen w-screen bg-black/50">
       <div className="absolute left-2/4 top-[5%] flex h-[60rem] w-[80rem] -translate-x-2/4 flex-col rounded-lg bg-white">
         <div id="modal_contents" className="min-h-[53rem] overflow-y-scroll">
           <div className="flex flex-col items-center gap-[1rem] py-[4rem]">
-            {isClick && <div className="text-myred-400 text-[2rem] font-bold">로그인하세요</div>}
+            {isClick && <div className="text-[2rem] font-bold text-myred-400">로그인하세요</div>}
             <div
               id="review_write_icon_wrap"
               className="flex w-[90%] items-center justify-end font-bold"

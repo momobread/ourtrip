@@ -9,4 +9,11 @@ interface ReviewType {
   review_user: string;
 }
 
-export type { ReviewType };
+interface ReviewWriteType {
+  title: string;
+  content: string;
+  user: string;
+  image: FileList;
+}
+
+export type { ReviewType, ReviewWriteType };
