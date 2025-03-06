@@ -11,7 +11,7 @@ import { GoogleMapMarkerType } from '@/app/_lib/types/params';
 import { ProductType } from '@/app/_lib/types/product';
 
 interface pageProps {
-  searchParams: Record<string, string | undefined>;
+  searchParams: Promise<Record<string, string | undefined>>;
 }
 const NEXTURL = process.env.NEXTAUTH_URL;
 

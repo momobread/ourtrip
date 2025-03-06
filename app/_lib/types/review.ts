@@ -5,8 +5,9 @@ interface ReviewType {
   review_title: string;
   review_content: string;
   review_rate: number;
-  review_img: string | [];
+  review_img: string;
   review_user: string;
+  USER?: { user_name: string };
 }
 
 interface ReviewWriteType {

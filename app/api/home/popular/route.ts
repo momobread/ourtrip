@@ -26,7 +26,7 @@ export async function GET() {
   }
 }
 
-export async function POST(req: Response) {
+export async function POST(req: Request) {
   const { filterLocation, category } = await req.json();
   let locationFilter;
   if (filterLocation === '서울')

@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { NextResponse } from 'next/server';
 
+import { ReviewType } from '@/app/_lib/types/review';
+
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_KEY;
 
@@ -23,7 +25,7 @@ export async function POST(req: Request) {
     if (data.length === 0) return NextResponse.json(null);
 
     const reviewData = await Promise.all(
-      data?.map((review) => {
+      data?.map((review: ReviewType) => {
         return {
           ...review,
           review_img: review?.review_img === '' ? [] : review?.review_img,

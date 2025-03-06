@@ -7,8 +7,8 @@ import RoomOptions from '@/app/_components/ProductDetail/RoomOptions';
 const NEXTURL = process.env.NEXTAUTH_URL;
 
 interface PageProps {
-  params: Record<string, string | undefined>;
-  searchParams: Record<string, string>;
+  params: Promise<Record<string, string | undefined>>;
+  searchParams: Promise<Record<string, string>>;
 }
 
 const page = async ({ params, searchParams }: PageProps) => {

@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+
+import ReviewCard from '@/app/_components/Review/ReviewCard';
+import ReviewModal from '@/app/_components/Review/ReviewModal';
 import { ReviewType } from '@/app/_lib/types/review';
-import ReviewModal from './ReviewModal';
-import ReviewCard from './ReviewCard';
-import { useSession } from 'next-auth/react';
 
 interface PreviewReviewProps {
   reviewData: ReviewType[];
@@ -20,6 +20,7 @@ const PreviewReview = ({ reviewData, product_num }: PreviewReviewProps) => {
     reviewData?.reduce((acc, cur) => {
       return acc + cur.review_rate;
     }, 0) / reviewCount;
+
   return (
     <div className="flex h-[18rem] w-[50%] flex-col gap-[1rem] rounded-xl border border-slate-400 p-[1rem]">
       <div className="flex justify-between">

@@ -68,3 +68,25 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: ErrorMesaage });
   }
 }
+
+export async function DELETE(req: Request) {
+  const { id } = await req.json();
+  console.log('삭제중');
+  try {
+    await axios.delete(`${SUPABASE_URL}/rest/v1/PRODUCT_REVIEWS`, {
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+        Prefer: 'return=representation',
+      },
+      params: {
+        id: `eq.${id}`,
+      },
+    });
+    return NextResponse.json({ status: 'success' });
+  } catch (e) {
+    const ErrorMesaage = e instanceof Error ? e.message : '삭제실패';
+    return NextResponse.json(ErrorMesaage);
+  }
+}

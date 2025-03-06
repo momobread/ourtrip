@@ -1,12 +1,14 @@
+import Image from 'next/image';
+
 import MainNav from '@/app/_components/layout/MainNav';
 import ReviewForm from '@/app/_components/Review/ReviewForm';
 import SessionWrapper from '@/app/_components/Session/SessionWrapper';
 import { ProductType } from '@/app/_lib/types/product';
 import { priceFormat } from '@/app/_lib/utils/format';
-import Image from 'next/image';
 
 const NEXTURL = process.env.NEXTAUTH_URL;
-async function ReviewPage({ params }) {
+
+async function ReviewPage({ params }: { params: Promise<Record<string, string>> }) {
   const product_num = (await params)?.productNum;
   const productResponse = await fetch(`${NEXTURL}/api/product/detail`, {
     method: 'POST',
@@ -16,7 +18,7 @@ async function ReviewPage({ params }) {
     }),
   });
   const productData: ProductType = await productResponse.json();
-  const { PRODUCT_ROOMS, product_content, product_img, product_name, product_price } = productData;
+  const { product_content, product_img, product_name, product_price } = productData;
 
   return (
     <section className="min-h-screen">

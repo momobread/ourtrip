@@ -1,4 +1,11 @@
-const Tootip = ({ children, text }) => {
+import { ReactNode } from 'react';
+
+interface TootipProps {
+  children: ReactNode;
+  text: string;
+}
+
+const Tootip = ({ children, text }: TootipProps) => {
   return (
     <div className="group relative">
       {children}

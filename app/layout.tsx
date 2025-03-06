@@ -18,10 +18,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  review,
+  // review,
 }: Readonly<{
   children: React.ReactNode;
-  review: React.ReactNode;
+  // review: React.ReactNode;
 }>) {
   return (
     <html lang="en" className="h-full">
@@ -34,7 +34,7 @@ export default function RootLayout({
 
         {/* <MainNav /> */}
         <div className="h-full w-full">{children}</div>
-        <div>{review}</div>
+        {/* <div>{review}</div> */}
         <Footer />
       </body>
     </html>

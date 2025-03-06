@@ -7,8 +7,8 @@ import PreviewReview from '@/app/_components/Review/PreviewReview';
 import SessionWrapper from '@/app/_components/Session/SessionWrapper';
 import { GoogleMapMarkerType } from '@/app/_lib/types/params';
 import { ProductType, RoomType } from '@/app/_lib/types/product';
-import { priceFormat } from '@/app/_lib/utils/format';
 import { ReviewType } from '@/app/_lib/types/review';
+import { priceFormat } from '@/app/_lib/utils/format';
 
 interface DetailInformProps {
   data: ProductType;
@@ -32,6 +32,8 @@ const DetailInform = async ({ data, marker }: DetailInformProps) => {
   } = data;
 
   const reviewResponse = await fetch(`${NEXTURL}/api/product/review`, {
+    //
+    next: { tags: [`review`] },
     method: 'POST',
     headers: {},
     body: JSON.stringify({

@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import axios from 'axios';
 
 import Carousel from '@/app/_components/Home/Carousel';
@@ -8,12 +10,12 @@ import PreviewMap from '@/app/_components/Home/PreviewMap';
 import MainNav from '@/app/_components/layout/MainNav';
 import { ProductType, type PreImgProductType } from '@/app/_lib/types/product';
 
-const NEXTURL = process.env.NEXTAUTH_URL;
+const NEXTURL = process.env.NEXTAUTH_URL ?? '';
 
 export default async function Home({
   searchParams,
 }: {
-  searchParams: Record<string, string | undefined>;
+  searchParams: Promise<Record<string, string | undefined>>;
 }) {
   const carouselImg = await axios.get(`${NEXTURL}/api/home/carousel`);
   const popularResponse = await axios.get(`${NEXTURL}/api/home/popular`);

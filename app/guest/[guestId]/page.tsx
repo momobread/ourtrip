@@ -3,12 +3,12 @@ import axios from 'axios';
 import MainNav from '@/app/_components/layout/MainNav';
 import DetailInform from '@/app/_components/ProductDetail/DetailInform';
 import RoomOptions from '@/app/_components/ProductDetail/RoomOptions';
-
 const NEXTURL = process.env.NEXTAUTH_URL;
 
 interface PageProps {
-  params: Record<string, string | undefined>;
-  searchParams: Record<string, string>;
+  params: Promise<{ guestId: string }>;
+  // params: Record<string, string | undefined>;
+  searchParams: Promise<Record<string, string>>;
 }
 
 const page = async ({ params, searchParams }: PageProps) => {
