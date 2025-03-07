@@ -1,9 +1,7 @@
 'use client';
 
-import ProductCard from '@/app/_components/product/ProductCard';
+import ListCard from '@/app/_components/Leisure/ListCard';
 import { LeisureType } from '@/app/_lib/types/leisure';
-import { ProductType } from '@/app/_lib/types/product';
-import ListCard from './ListCard';
 
 interface LeisureList {
   datas: LeisureType[];

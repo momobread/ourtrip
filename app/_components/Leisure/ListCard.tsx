@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { LeisureType } from '@/app/_lib/types/leisure';
 import { priceFormat } from '@/app/_lib/utils/format';
@@ -10,7 +10,7 @@ interface ListCardProps {
 }
 
 const ListCard = ({ data, category }: ListCardProps) => {
-  const { leisure_content, leisure_img, leisure_name, leisure_price, leisure_num } = data;
+  const { leisure_content, leisure_img, leisure_price, leisure_num } = data;
   return (
     <li className="relative flex h-[32rem] w-[40rem] flex-col justify-center rounded-xl">
       <Link href={`/${category}/${leisure_num}`}>

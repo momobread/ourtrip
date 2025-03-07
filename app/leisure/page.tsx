@@ -1,6 +1,6 @@
 import Carousel from '@/app/_components/Home/Carousel';
 import MainNav from '@/app/_components/layout/MainNav';
-import LeisureList from '../_components/Leisure/LeisureList';
+import LeisureList from '@/app/_components/Leisure/LeisureList';
 
 const NEXTAUTH_URL = process.env.NEXTAUTH_URL;
 

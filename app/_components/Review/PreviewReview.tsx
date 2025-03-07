@@ -9,7 +9,7 @@ import { ReviewType } from '@/app/_lib/types/review';
 interface PreviewReviewProps {
   reviewData: ReviewType[];
   product_num: string;
-  style: string;
+  style?: string;
 }
 
 const PreviewReview = ({ reviewData, product_num, style }: PreviewReviewProps) => {

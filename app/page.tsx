@@ -3,7 +3,7 @@ export const dynamic = 'force-dynamic';
 import axios from 'axios';
 
 import Carousel from '@/app/_components/Home/Carousel';
-import EventPrivew from '@/app/_components/Home/EventPreview';
+// import EventPrivew from '@/app/_components/Home/EventPreview';
 import PopularCard from '@/app/_components/Home/PopularCard';
 import PopularLocation from '@/app/_components/Home/PopularList';
 import PreviewMap from '@/app/_components/Home/PreviewMap';
@@ -78,7 +78,7 @@ export default async function Home({
               <PopularCard img={popular.url} title={popular.title} key={i} href={'/leisure'} />
             ))}
           />
-          <EventPrivew />
+          {/* <EventPrivew /> */}
         </section>
       </main>
     </>

@@ -1,11 +1,10 @@
-import { LeisureType } from '@/app/_lib/types/leisure';
-import { priceFormat } from '@/app/_lib/utils/format';
 import Image from 'next/image';
-import LeisureInform from './LeisureInform';
-import ReviewCard from '../Review/ReviewCard';
-import axios from 'axios';
+
+import LeisureInform from '@/app/_components/Leisure/LeisureInform';
+import PreviewReview from '@/app/_components/Review/PreviewReview';
+import { LeisureType } from '@/app/_lib/types/leisure';
 import { ReviewType } from '@/app/_lib/types/review';
-import PreviewReview from '../Review/PreviewReview';
+import { priceFormat } from '@/app/_lib/utils/format';
 
 const NEXTURL = process.env.NEXTAUTH_URL;
 

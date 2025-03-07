@@ -44,3 +44,8 @@
 // }
 
 // export default ReviewPage;
+
+const page = () => {
+  return;
+};
+export default page;
