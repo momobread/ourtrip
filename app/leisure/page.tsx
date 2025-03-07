@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import Carousel from '@/app/_components/Home/Carousel';
 import MainNav from '@/app/_components/layout/MainNav';
 import LeisureList from '@/app/_components/Leisure/LeisureList';
