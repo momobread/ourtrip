@@ -57,25 +57,25 @@ export default async function Home({
           <PopularLocation
             title="인기 숙소 추천"
             render={best_hotel?.map((popular, i) => (
-              <PopularCard size="medium" img={popular.url} title={popular.title} key={i} />
+              <PopularCard size="medium" img={popular.url} title={popular.title} key={i} href="" />
             ))}
           />
           <PopularLocation
             title="hot한 호텔"
             render={hot_hotel?.map((popular, i) => (
-              <PopularCard size="medium" img={popular.url} title={popular.title} key={i} />
+              <PopularCard size="medium" img={popular.url} title={popular.title} key={i} href="" />
             ))}
           />
           <PopularLocation
             title="인기있는 지역"
             render={po_location?.map((popular, i) => (
-              <PopularCard img={popular.url} title={popular.title} key={i} />
+              <PopularCard img={popular.url} title={popular.title} key={i} href="" />
             ))}
           />
           <PopularLocation
             title="많이찾는 액티비티"
             render={po_activity?.map((popular, i) => (
-              <PopularCard img={popular.url} title={popular.title} key={i} />
+              <PopularCard img={popular.url} title={popular.title} key={i} href={'/leisure'} />
             ))}
           />
           <EventPrivew />

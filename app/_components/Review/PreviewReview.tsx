@@ -9,11 +9,11 @@ import { ReviewType } from '@/app/_lib/types/review';
 interface PreviewReviewProps {
   reviewData: ReviewType[];
   product_num: string;
+  style: string;
 }
 
-const PreviewReview = ({ reviewData, product_num }: PreviewReviewProps) => {
+const PreviewReview = ({ reviewData, product_num, style }: PreviewReviewProps) => {
   const [isClick, setIsClick] = useState<boolean>(false);
-
   const previewReview = reviewData?.slice(0, 2);
   const reviewCount = reviewData?.length;
   const reviewAverage =
@@ -22,7 +22,9 @@ const PreviewReview = ({ reviewData, product_num }: PreviewReviewProps) => {
     }, 0) / reviewCount;
 
   return (
-    <div className="flex h-[18rem] w-[50%] flex-col gap-[1rem] rounded-xl border border-slate-400 p-[1rem]">
+    <div
+      className={`flex flex-col gap-[1rem] rounded-xl border border-slate-400 p-[1rem] ${style ? style : 'h-[18rem] w-[50rem]'} `}
+    >
       <div className="flex justify-between">
         <p>
           <span className="text-gray-500">
@@ -43,7 +45,14 @@ const PreviewReview = ({ reviewData, product_num }: PreviewReviewProps) => {
           <ReviewCard review={previewReview} type="preview" />
         )}
       </div>
-      {isClick && <ReviewModal data={reviewData} onClick={setIsClick} product_num={product_num} />}
+      {isClick && (
+        <ReviewModal
+          data={reviewData}
+          onClick={setIsClick}
+          product_num={product_num}
+          flag="leisrue"
+        />
+      )}
     </div>
   );
 };

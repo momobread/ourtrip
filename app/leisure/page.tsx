@@ -1,40 +1,32 @@
-// import ProductList from '@/app/_components/product/ProductList';
-// import ProductOptions from '@/app/_components/product/ProductOptions';
-// import ProductPageNation from '@/app/_components/product/ProductPageNation';
-// import SideNav from '@/app/_components/product/SideNav';
+import Carousel from '@/app/_components/Home/Carousel';
+import MainNav from '@/app/_components/layout/MainNav';
+import LeisureList from '../_components/Leisure/LeisureList';
 
-// interface pageProps {
-//   searchParams: Record<string, string>;
-// }
+const NEXTAUTH_URL = process.env.NEXTAUTH_URL;
 
-// const page = async ({ searchParams }: pageProps) => {
-//   const filter = searchParams.filter ?? 'low_price';
-//   const currentPage = searchParams.page ?? '1';
-//   const itemPerPage = searchParams.count ?? '12';
-//   const { productData, totalItems, totalPages } = await fetchProducts({
-//     filter,
-//     category: '4', //큰 카테코리
-//     itemPerPage, //보여줄 갯수
-//     currentPage, //현재페이지
-//   });
-//   // const { slideData, pageNum } = pageNation({ option: 5, productData });
-//   return (
-//     <section className="h-full">
-//       <div className="flex flex-col items-center">
-//         {/* 지도필터 먼저 띄우고, 서울을 기준으로 안내, 그리고 버튼 누르면 내위치 기준으로 안내 */}
-//         <div className="flex w-[90%] flex-col items-end bg-slate-200">
-//           <ProductOptions />
-//           <SideNav />
-//         </div>
-//         <div className="mt-[5rem] w-[90%]">검색결과 : {totalItems}개</div>
-//         <ProductList productData={productData} />
-//         <ProductPageNation pages={totalPages} />
-//       </div>
-//     </section>
-//   );
-// };
-// export default page;
-const page = () => {
-  return;
+const LeisurePage = async () => {
+  const CarouselResponse = await fetch(`${NEXTAUTH_URL}/api/leisure/carousel`, { method: 'GET' });
+  const leisure_carousel = await CarouselResponse.json();
+  const LeisureResponse = await fetch(`${NEXTAUTH_URL}/api/leisure`, { method: 'GET' });
+  const leisure_data = await LeisureResponse.json();
+
+  const leisureData1 = leisure_data.slice(0, 3);
+  const leisureData2 = leisure_data.slice(3, 6);
+  const leisureData3 = leisure_data.slice(6, 9);
+
+  return (
+    <>
+      <MainNav />
+      <main className="h-full w-full">
+        <section className="flex h-full flex-col items-center">
+          <div className="mb-[2rem] text-[3rem] font-bold">오늘의 추천 레져활동!</div>
+          <Carousel Image={leisure_carousel} />
+          <LeisureList datas={leisureData3} category="leisure" title="잔잔한 레져" />
+          <LeisureList datas={leisureData2} category="leisure" title="스릴넘치는 레져" />
+          <LeisureList datas={leisureData1} category="leisure" title="액티비티한 레져" />
+        </section>
+      </main>
+    </>
+  );
 };
-export default page;
+export default LeisurePage;

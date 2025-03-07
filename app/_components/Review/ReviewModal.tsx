@@ -10,10 +10,10 @@ interface ReviewModalProps {
   data: ReviewType[];
   onClick: Dispatch<React.SetStateAction<boolean>>;
   product_num: string;
+  flag: string;
 }
-function ReviewModal({ data, onClick, product_num }: ReviewModalProps) {
+function ReviewModal({ data, onClick, product_num, flag }: ReviewModalProps) {
   const { data: user } = useSession();
-
   const [isIdExist, setIdExist] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
@@ -24,7 +24,11 @@ function ReviewModal({ data, onClick, product_num }: ReviewModalProps) {
       return;
     }
     setIsLoading(true);
-    router.replace(`/review/post/${product_num}`);
+    if (!flag) {
+      router.replace(`/review/post/${product_num}`);
+    } else {
+      //재진행
+    }
   };
   return (
     <div id="overlay" className="fixed left-0 top-0 z-50 h-screen w-screen bg-black/50">
