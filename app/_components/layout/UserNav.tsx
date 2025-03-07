@@ -10,7 +10,7 @@ const UserNav = () => {
   // console.log(user);
 
   return (
-    <div className="absolute right-0 top-0 h-[5rem] border border-purple-50 px-[1rem] hover:cursor-pointer">
+    <div className="absolute right-0 top-0 h-[5rem] px-[1rem] hover:cursor-pointer">
       <ul className="flex h-[5rem] items-center justify-center gap-[2rem]">
         {user?.email ? (
           <li onClick={() => signOut()}>

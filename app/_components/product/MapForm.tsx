@@ -12,14 +12,15 @@ interface MapFormProps {
 }
 const MapForm = ({ formStyle, markers }: MapFormProps) => {
   const [location, setLocation] = useState({ lat: 37.5655, lng: 126.978 });
+  const [currentFilter, setCurrentFilter] = useState<string>('서울');
   const router = useRouter();
   const serachParams = useSearchParams();
   const pathname = usePathname();
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const { lng, lat, title } = JSON.parse(e.target.value);
-    console.log(title, '지역');
     setLocation({ lng, lat });
+    setCurrentFilter(title);
     const params = new URLSearchParams(serachParams);
     params.set('location', title);
 
@@ -30,7 +31,7 @@ const MapForm = ({ formStyle, markers }: MapFormProps) => {
     <div className="flex h-[50rem] w-full justify-center">
       <div className="flex w-[30%] flex-col items-center justify-center border-y border-l border-gray-400">
         <div className="flex w-[90%] flex-col gap-[1rem] bg-slate-200">
-          <span className="text-[2.5rem]">서울을 기준으로 숙소를 안내하고 있어요</span>
+          <span className="text-[2.5rem]">{currentFilter}을 기준으로 숙소를 안내하고 있어요</span>
           <div>
             <span>위치를 선택하여 주세요</span>
             <select onChange={(e) => handleChange(e)}>
