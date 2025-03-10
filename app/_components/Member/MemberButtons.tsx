@@ -49,8 +49,18 @@ const MemberButtons = () => {
           <Image src="/member/google/web_light_sq_SI@4x.png" fill alt="google_login" />
           구글로그인
         </button>
-        <button type="button" onClick={() => signIn('github', { callbackUrl: '/' })}>
+        <button
+          type="button"
+          onClick={() => signIn('github', { callbackUrl: '/' })}
+          className="relative h-[5rem] w-[100%] rounded-xl"
+        >
           깃로그인
+          <Image
+            src="/member/git/git_oauth_login.png"
+            fill
+            alt="google_login"
+            className="rounded-xl"
+          />
         </button>
       </div>
     </div>
