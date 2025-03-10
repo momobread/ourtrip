@@ -19,6 +19,7 @@ interface GoogleMapMarkerType {
   lng: number;
   title?: string;
   product_num?: string;
+  price: number;
 }
 
 export type { FetchProductsType, FetchProductsReturnType, GoogleMapMarkerType };

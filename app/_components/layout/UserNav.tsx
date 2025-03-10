@@ -7,12 +7,11 @@ import Tootip from '@/app/_components/Tootip';
 const UserNav = () => {
   const { data } = useSession();
   const user = data?.user;
-  // console.log(user);
 
   return (
     <div className="absolute right-0 top-0 h-[5rem] px-[1rem] hover:cursor-pointer">
       <ul className="flex h-[5rem] items-center justify-center gap-[2rem]">
-        {user?.email ? (
+        {user?.email || user?.name ? (
           <li onClick={() => signOut()}>
             <Tootip text="로그아웃">
               <svg

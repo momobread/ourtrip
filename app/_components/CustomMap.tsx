@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { ClipLoader } from 'react-spinners';
 
 import { GoogleMapMarkerType } from '@/app/_lib/types/params';
+import { priceFormat } from '@/app/_lib/utils/format';
 import { GoogleMap, Marker, InfoWindow, LoadScriptNext } from '@react-google-maps/api';
 
 const GOOGLE_MAPS_APIKEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_APIKEY ?? '';
@@ -28,8 +29,11 @@ const CustomMap = ({ formStyle, markers, center, category }: CustomMapStyle) => 
   const [focus, setFocus] = useState<number>(10);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
+  const [markerList, setMarkList] = useState<GoogleMapMarkerType[]>(markers);
+
   const [tooltipMessage, setTooltipMessage] =
     useState<string>('버튼을 누르면 현재위치로 포커싱됩니다');
+
   useEffect(() => {
     setCurrentPosition(center);
   }, [center]);
@@ -44,7 +48,17 @@ const CustomMap = ({ formStyle, markers, center, category }: CustomMapStyle) => 
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         });
+        setMarkList((pre) => [
+          ...pre,
+          {
+            id: 99,
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+            price: 0,
+          },
+        ]);
       });
+
       setFocus(14);
     } else {
       console.log('이 브라우저에서는 현재위치가 지원되지 않습니다');
@@ -103,12 +117,17 @@ const CustomMap = ({ formStyle, markers, center, category }: CustomMapStyle) => 
             }}
           /> */}
 
-          {markers.map((marker) => (
+          {markerList.map((marker, i) => (
             <Marker
               key={marker.id}
               position={{ lat: marker.lat, lng: marker.lng }}
               title={marker.title}
               onClick={() => setSelectMarker(marker)}
+              icon={
+                isDisabled && i + 1 === markerList.length
+                  ? `http://maps.google.com/mapfiles/ms/icons/green-dot.png`
+                  : `http://maps.google.com/mapfiles/ms/icons/red-dot.png`
+              }
             />
           ))}
           {isLoading ? (
@@ -124,8 +143,16 @@ const CustomMap = ({ formStyle, markers, center, category }: CustomMapStyle) => 
               onCloseClick={() => setSelectMarker(null)}
             >
               <div>
-                <p>{selectMarker.title}</p>
-                <Link href={`/${category}/${selectMarker.product_num}`}>상세정보 보기 </Link>
+                <p className="text-bold">
+                  {selectMarker.price ? `${priceFormat(selectMarker.price)}원` : '내위치'}
+                </p>
+                <p className="font-bold text-primary-200">{selectMarker.title}</p>
+                <Link
+                  href={`/${category}/${selectMarker.product_num}`}
+                  className="font-bold text-red-300"
+                >
+                  상세정보 보기
+                </Link>
               </div>
             </InfoWindow>
           )}

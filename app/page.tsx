@@ -44,6 +44,7 @@ export default async function Home({
       lng: data.product_lng,
       title: data.product_name,
       product_num: data.product_num,
+      price: data.product_price,
     };
   });
 
