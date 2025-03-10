@@ -35,6 +35,7 @@ const DetailLocation = ({ marker, location }: DetailLocationProps) => {
       lng: marker?.lng,
       id: marker?.id,
       product_num: marker?.product_num,
+      price: marker?.price,
     },
   ]);
 
@@ -54,6 +55,7 @@ const DetailLocation = ({ marker, location }: DetailLocationProps) => {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
             title: 'current position',
+            price: 0,
           },
         ]);
         setCurrentPosition({
