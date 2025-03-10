@@ -1,37 +1,9 @@
 'use client';
-import axios from 'axios';
-import { signIn } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { redirect, useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { signIn } from 'next-auth/react';
 
 const MemberButtons = () => {
-  const AUTHORIZE_URL = process.env.NEXT_PUBLIC_OAUTH_KAKAO_AUTHORIZE_URL;
-  const REST_API_KEY = process.env.NEXT_PUBLIC_OAUTH_KAKAO_REST_API_KEY;
-  const REDIRECT_URI = process.env.NEXT_PUBLIC_OAUTH_KAKAO_REDIRECT_URI;
-
-  const [kakao, setKakao] = useState<boolean>(false);
-  const router = useRouter();
-
-  // useEffect(() => {
-  //   if (!kakao) return;
-  //   async function kakaoAuthorize() {
-  //     try {
-  //       const response = await signIn('kakao', { redirect: false });
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //   }
-  //   kakaoAuthorize();
-  // }, [kakao]);
-
-  // async function handleKakaoLogin() {
-  //   // const kakaoUrl = `${AUTHORIZE_URL}?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`;
-  //   // location.href = kakaoUrl;
-  //   const res = await signIn('kakao', { redirect: false });
-  //   console.log(res);
-  // }
   return (
     <div className="flex flex-col gap-[1rem]">
       <button

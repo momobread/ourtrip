@@ -3,7 +3,6 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 const ProductOptions = () => {
-  //쿼리스트링으로 값 올리고
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -13,25 +12,25 @@ const ProductOptions = () => {
     const params = new URLSearchParams(searchParams);
     params.set('count', count);
     params.set('page', '1');
-    router.replace(`${pathname}?${params.toString()}`);
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   };
   return (
-    <div className="flex gap-5 px-[2rem] py-[1rem]">
+    <div className="mb-[1rem] flex gap-5 px-[2rem] py-[0.5rem]">
       <button
         onClick={() => handleFilter('12')}
-        className={`text-[2rem] ${activeFilter === '12' ? 'font-extrabold text-primary-200' : ''}`}
+        className={`rounded-3xl px-[1.5rem] py-[0.5rem] text-[2rem] ${activeFilter === '12' ? 'bg-primary-200 font-extrabold' : 'border-grey-250 border'}`}
       >
         12개씩 보기
       </button>
       <button
         onClick={() => handleFilter('16')}
-        className={`text-[2rem] ${activeFilter === '16' ? 'font-extrabold text-primary-200' : ''}`}
+        className={`rounded-3xl px-[1.5rem] py-[0.5rem] text-[2rem] ${activeFilter === '16' ? 'bg-primary-200 font-extrabold' : 'border-grey-250 border'}`}
       >
         16개씩 보기
       </button>
       <button
         onClick={() => handleFilter('20')}
-        className={`text-[2rem] ${activeFilter === '20' ? 'font-extrabold text-primary-200' : ''}`}
+        className={`rounded-3xl px-[1.5rem] py-[0.5rem] text-[2rem] ${activeFilter === '20' ? 'bg-primary-200 font-extrabold' : 'border-grey-250 border'}`}
       >
         20개씩 보기
       </button>

@@ -8,7 +8,7 @@ import Header from '@/app/_components/layout/Header';
 const textNoto = Noto_Sans_KR({
   subsets: ['latin'],
   display: 'swap',
-  weight: '300',
+  weight: '400',
 });
 
 export const metadata: Metadata = {
@@ -18,8 +18,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  // review,
 }: Readonly<{
   children: React.ReactNode;
+  // review: React.ReactNode;
 }>) {
   return (
     <html lang="en" className="h-full">
@@ -32,6 +34,7 @@ export default function RootLayout({
 
         {/* <MainNav /> */}
         <div className="h-full w-full">{children}</div>
+        {/* <div>{review}</div> */}
         <Footer />
       </body>
     </html>

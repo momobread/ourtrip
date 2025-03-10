@@ -9,13 +9,14 @@ type carousel = {
 
 interface CarouselType {
   Image: carousel[];
+  style?: string;
 }
 
 const buttonStyle = `
   absolute top-[50%] bg-[rgba(225,225,225,0.7)] rounded-3xl w-12 h-12 text-[#000] font-semibold z-10
 `;
 
-const Carousel = ({ Image }: CarouselType) => {
+const Carousel = ({ Image, style }: CarouselType) => {
   const slides = Image;
   const [currentIndex, setCurrenIndex] = useState<number>(0);
   useEffect(() => {
@@ -33,7 +34,7 @@ const Carousel = ({ Image }: CarouselType) => {
     setCurrenIndex((v) => (v === 0 ? 3 : v - 1));
   };
   return (
-    <div className="relative h-[80rem] w-full max-w-[100%] overflow-hidden">
+    <div className={`${style ? style : 'h-[80rem] w-full'} relative max-w-[100%] overflow-hidden`}>
       <div className="absolute flex">
         {slides.map((carousel) => (
           <div
@@ -45,12 +46,18 @@ const Carousel = ({ Image }: CarouselType) => {
           </div>
         ))}
 
-        <button className={`${buttonStyle} left-10`} onClick={handlePrevious}>
-          -
-        </button>
-        <button className={`${buttonStyle} right-10`} onClick={handleNext}>
-          +
-        </button>
+        {style ? (
+          ' '
+        ) : (
+          <>
+            <button className={`${buttonStyle} left-10`} onClick={handlePrevious}>
+              -
+            </button>
+            <button className={`${buttonStyle} right-10`} onClick={handleNext}>
+              +
+            </button>
+          </>
+        )}
       </div>
     </div>
   );

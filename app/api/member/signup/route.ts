@@ -9,7 +9,7 @@ export async function POST(req: Request) {
     const { email, birth, gender, name, nickname, password, safePassword, phoneNumber } =
       await req.json();
     console.log(name);
-    const { data, error } = await axios.post(
+    const { data } = await axios.post(
       `
         ${SUPABASE_URL}/auth/v1/signup`,
       {
@@ -33,7 +33,7 @@ export async function POST(req: Request) {
       }
     );
     console.log('signup');
-    if (!data) throw new Error(error.message);
+    if (!data) throw new Error('회원가입에 실패하였스빈가가');
     return NextResponse.json({ success: true, user: data }, { status: 201 });
     // eslint-disable-next-line
   } catch (e: any) {

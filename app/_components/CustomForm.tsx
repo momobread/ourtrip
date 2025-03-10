@@ -29,7 +29,7 @@ const CustomForm = ({ children, style, category }: CustomFormProps) => {
   const { handleSubmit, register } = useForm<LoginType | JoinMemberType>();
 
   const onSubmit = async (data: LoginType | JoinMemberType) => {
-    if (category === 'login') {
+    if (category === 'login' && 'id' in data && 'password' in data) {
       const result = await signIn('credentials', {
         id: data?.id,
         password: data?.password,
