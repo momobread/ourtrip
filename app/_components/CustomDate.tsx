@@ -44,7 +44,7 @@ const CustomDate = () => {
   };
   // console.log(range);
   return (
-    <div className="mb-[3rem] flex flex-col items-center justify-center rounded-xl bg-primary-50 py-[3rem]">
+    <div className="mb-[3rem] flex flex-col items-center justify-center rounded-xl bg-primary-50 px-[3rem] py-[2rem] sm:px-0 sm:py-[3rem]">
       <DayPicker
         locale={ko}
         mode="range"
@@ -63,8 +63,8 @@ const CustomDate = () => {
         disabled={(date) => date < subDays(new Date(), 1)}
       />
       <div className="flex flex-col">
-        <span>선택된날짜</span>
-        <span>
+        <span className="text-[1.5rem] sm:text-[2rem]">선택된날짜</span>
+        <span className="text-[1.5rem] sm:text-[2rem]">
           {format(`${range?.from}`, 'yyyy-MM-dd')} ~ {format(`${range?.to}`, 'yyyy-MM-dd')}
         </span>
         <button className="rounded-lg bg-primary-300 p-[1rem] text-white" onClick={handleClick}>

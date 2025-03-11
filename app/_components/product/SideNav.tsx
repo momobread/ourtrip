@@ -13,7 +13,7 @@ const SideNav = ({ totalItems }: SideNavProps) => {
 
   const activeFilter = searchParams.get('filter') ?? 'low_price';
   const activestyle = `font-bold text-primary-400 border-b-4 border-primary-400`;
-  const filterstyle = `w-[15rem] text-center text-[2rem] p-[1.2rem]`;
+  const filterstyle = `sm:w-[15rem] w-[25%] text-center sm:text-[2rem] text-[1.5rem] p-[1.2rem]`;
 
   const handleFilter = ({ value }: { value: string }) => {
     const params = new URLSearchParams(searchParams);
@@ -25,9 +25,9 @@ const SideNav = ({ totalItems }: SideNavProps) => {
   };
   return (
     <div className="w-full bg-slate-200">
-      <ul className="flex h-[6rem] w-full items-center justify-between">
-        <div className="px-[3rem]">검색결과 : {totalItems}개</div>
-        <div className="flex rounded-xl">
+      <ul className="flex w-full flex-col items-center justify-between sm:h-[6rem] sm:flex-row">
+        <div className="text-[1.5rem] sm:px-[3rem]">검색결과 : {totalItems}개</div>
+        <div className="flex w-full rounded-xl">
           <li
             onClick={() => handleFilter({ value: 'low_price' })}
             className={`${filterstyle} ${activeFilter === 'low_price' ? activestyle : 'font-medium'}`}

@@ -14,14 +14,16 @@ const RoomOptions = async ({ data, date }: RoomOptionsProps) => {
   const stayDays = differenceInDays(checkOut, checkIn);
   return (
     <div className="flex flex-col items-center">
-      <div className="w-[65%]">
+      <div className="w-screen sm:w-[65%]">
         <CustomDate />
-        <span className='font-bold text-[2.5rem] my-[1rem] inline-block'>객실선택</span>
-        <div className="w-full bg-slate-100 rounded-lg p-[1rem] ">
+        <span className="my-[1rem] inline-block p-[1rem] text-[2.5rem] font-bold sm:p-0">
+          객실선택
+        </span>
+        <div className="w-full rounded-lg bg-slate-100 p-[1rem] text-[1.5rem] sm:text-[2rem]">
           {date.checkIn} ~ {date.checkOut}
           <p>
             선택된 숙박기간은
-            <span className="text-amber-400 font-bold"> {stayDays}일</span> 입니다
+            <span className="font-bold text-amber-400"> {stayDays}일</span> 입니다
           </p>
         </div>
         <ul className="my-[2rem] flex flex-col gap-[1rem]">

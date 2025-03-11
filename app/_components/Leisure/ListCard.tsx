@@ -12,9 +12,9 @@ interface ListCardProps {
 const ListCard = ({ data, category }: ListCardProps) => {
   const { leisure_content, leisure_img, leisure_price, leisure_num } = data;
   return (
-    <li className="relative flex h-[32rem] w-[40rem] flex-col justify-center rounded-xl">
+    <li className="relative flex h-[32rem] w-screen flex-col justify-center rounded-xl sm:w-[40rem]">
       <Link href={`/${category}/${leisure_num}`}>
-        <div className="relative h-[24rem] w-[40rem] object-cover">
+        <div className="relative h-[24rem] w-screen object-cover sm:w-[40rem]">
           <Image src={leisure_img} fill alt="leisure_img" className="rounded-xl" />
         </div>
       </Link>

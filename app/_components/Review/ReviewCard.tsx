@@ -61,7 +61,7 @@ export default function ReviewCard({ review, type, uuid }: ReviewCardProps) {
 
   if (type === 'preview') {
     return (
-      <div className="flex w-[30rem] min-w-[48%] flex-col rounded-lg bg-slate-100 p-[1.5rem]">
+      <div className="flex min-w-[48%] flex-col rounded-lg bg-slate-100 p-[1.5rem] sm:w-[30rem]">
         <div className="flex justify-between">
           <span className="inline-block"> {previewformatDate}</span>
           <span className="inline-block">{'⭐'.repeat(review_rate)}</span>

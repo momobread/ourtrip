@@ -23,7 +23,7 @@ const PreviewReview = ({ reviewData, product_num, style }: PreviewReviewProps) =
 
   return (
     <div
-      className={`flex flex-col gap-[1rem] rounded-xl border border-slate-400 p-[1rem] ${style ? style : 'h-[18rem] w-[50rem]'} `}
+      className={`flex flex-col gap-[1rem] rounded-xl border border-slate-400 p-[1rem] sm:overflow-auto ${style ? style : 'h-fit sm:h-[18rem] sm:w-[50%]'} `}
     >
       <div className="flex justify-between">
         <p>
@@ -38,7 +38,7 @@ const PreviewReview = ({ reviewData, product_num, style }: PreviewReviewProps) =
         </button>
       </div>
 
-      <div className="flex h-[75%] gap-[1rem]">
+      <div className="flex h-[75%] flex-col gap-[1rem] sm:flex-row">
         {previewReview ? (
           previewReview?.map((review, i) => <ReviewCard review={review} type="preview" key={i} />)
         ) : (

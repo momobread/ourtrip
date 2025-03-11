@@ -35,6 +35,10 @@ const CustomMap = ({ formStyle, markers, center, category }: CustomMapStyle) => 
     useState<string>('버튼을 누르면 현재위치로 포커싱됩니다');
 
   useEffect(() => {
+    setMarkList(markers);
+  }, [markers]);
+
+  useEffect(() => {
     setCurrentPosition(center);
   }, [center]);
 

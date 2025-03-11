@@ -11,11 +11,11 @@ interface LeisureList {
 
 const LeisureList = ({ datas, category, title }: LeisureList) => {
   return (
-    <div className="mt-[3rem] flex h-[42rem] w-full flex-col items-center justify-center">
+    <div className="mt-[3rem] flex w-full flex-col items-center justify-center sm:h-[42rem]">
       <div className="my-[1rem] flex h-[7rem] w-[95%] items-center justify-center text-[2.5rem] font-bold">
         {title}
       </div>
-      <ul className="flex w-[95%] items-center justify-center gap-[3rem] pb-[2rem]">
+      <ul className="flex w-[95%] flex-col items-center justify-center gap-[3rem] pb-[2rem] sm:flex-row">
         {datas?.map((data: LeisureType) => (
           <ListCard data={data} key={data?.leisure_num} category={category} />
         ))}

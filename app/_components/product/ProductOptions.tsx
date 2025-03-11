@@ -15,22 +15,22 @@ const ProductOptions = () => {
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   };
   return (
-    <div className="mb-[1rem] flex gap-5 px-[2rem] py-[0.5rem]">
+    <div className="mb-[1rem] flex w-full justify-center gap-5 px-[2rem] py-[0.5rem] sm:w-fit sm:justify-normal">
       <button
         onClick={() => handleFilter('12')}
-        className={`rounded-3xl px-[1.5rem] py-[0.5rem] text-[2rem] ${activeFilter === '12' ? 'bg-primary-200 font-extrabold' : 'border-grey-250 border'}`}
+        className={`rounded-md px-[1.5rem] py-[0.5rem] text-[1.2rem] sm:rounded-3xl sm:text-[2rem] ${activeFilter === '12' ? 'bg-primary-200 font-extrabold' : 'border border-grey-250'}`}
       >
         12개씩 보기
       </button>
       <button
         onClick={() => handleFilter('16')}
-        className={`rounded-3xl px-[1.5rem] py-[0.5rem] text-[2rem] ${activeFilter === '16' ? 'bg-primary-200 font-extrabold' : 'border-grey-250 border'}`}
+        className={`rounded-md px-[1.5rem] py-[0.5rem] text-[1.2rem] sm:rounded-3xl sm:text-[2rem] ${activeFilter === '16' ? 'bg-primary-200 font-extrabold' : 'border border-grey-250'}`}
       >
         16개씩 보기
       </button>
       <button
         onClick={() => handleFilter('20')}
-        className={`rounded-3xl px-[1.5rem] py-[0.5rem] text-[2rem] ${activeFilter === '20' ? 'bg-primary-200 font-extrabold' : 'border-grey-250 border'}`}
+        className={`rounded-md px-[1.5rem] py-[0.5rem] text-[1.2rem] sm:rounded-3xl sm:text-[2rem] ${activeFilter === '20' ? 'bg-primary-200 font-extrabold' : 'border border-grey-250'}`}
       >
         20개씩 보기
       </button>

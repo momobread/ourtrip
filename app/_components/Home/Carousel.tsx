@@ -34,7 +34,9 @@ const Carousel = ({ Image, style }: CarouselType) => {
     setCurrenIndex((v) => (v === 0 ? 3 : v - 1));
   };
   return (
-    <div className={`${style ? style : 'h-[80rem] w-full'} relative max-w-[100%] overflow-hidden`}>
+    <div
+      className={`${style ? style : 'h-[30rem] w-full xl:h-[80rem]'} relative max-w-[100%] overflow-hidden`}
+    >
       <div className="absolute flex">
         {slides.map((carousel) => (
           <div
@@ -42,7 +44,7 @@ const Carousel = ({ Image, style }: CarouselType) => {
             key={carousel?.title}
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
-            <img src={carousel?.url} alt="carousel" className="h-[80rem] w-full" />
+            <img src={carousel?.url} alt="carousel" className="h-[30rem] w-full xl:h-[80rem]" />
           </div>
         ))}
 
