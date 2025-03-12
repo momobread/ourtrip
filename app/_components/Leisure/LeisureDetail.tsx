@@ -30,12 +30,12 @@ const LeisureDetail = async ({ data }: LeisureDetailProps) => {
   return (
     <div className="">
       <div className="flex flex-col items-center">
-        <div className="flex h-[60rem] w-[64%] gap-[1%]">
+        <div className="flex h-[30rem] w-screen gap-[1%] sm:h-[60rem] sm:w-[64%]">
           <div className="relative h-full w-full">
             <Image src={leisure_img} fill alt={`${leisure_num}`} className="rounded-xl" />
           </div>
         </div>
-        <div className="relative my-[1rem] flex w-[64%] flex-col gap-[1rem]">
+        <div className="relative my-[1rem] flex w-full flex-col gap-[1rem] px-[1rem] sm:w-[64%] sm:p-0">
           <span className="text-[3.5rem] font-semibold">{leisure_name}</span>
           <div className="flex justify-between">
             <p>{leisure_content}</p>
@@ -46,7 +46,7 @@ const LeisureDetail = async ({ data }: LeisureDetailProps) => {
         <PreviewReview
           reviewData={reviewData}
           product_num={leisure_num}
-          style="w-[64%] h-[18rem]"
+          style="sm:w-[64%] w-screen h-[10rem] sm:h-[18rem]"
         />
         <LeisureInform data={leisure_detail} />
       </div>

@@ -30,7 +30,7 @@ const Amenities = async ({ product_num }: AmenitiesProps) => {
     amenity_shopping,
   } = amenities;
   return (
-    <ul className="grid h-[18rem] w-[50%] grid-cols-5 grid-rows-2 items-center justify-center rounded-xl border border-slate-400 p-[1rem]">
+    <ul className="grid h-[18rem] grid-cols-5 grid-rows-2 items-center justify-center rounded-xl border border-slate-400 p-[1rem] sm:w-[50%]">
       <li className="justify-self-center">
         <div className="ml-[5%]">
           <svg

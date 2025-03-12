@@ -3,7 +3,7 @@ import Image from 'next/image';
 import CustomForm from '@/app/_components/CustomForm';
 import CustomInput from '@/app/_components/CustomInput';
 
-const FormStyle = `w-[50rem] border-grey-50 border z-9999 h-[60rem] absolute rounded-xl flex flex-col items-center gap-4 justify-center`;
+const FormStyle = `w-screen sm:w-[50rem] sm:border-grey-50 sm:border z-9999 sm:h-[60rem] absolute rounded-xl flex flex-col items-center gap-4 justify-center`;
 
 const page = () => {
   return (

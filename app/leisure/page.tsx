@@ -12,6 +12,8 @@ const LeisurePage = async () => {
   const LeisureResponse = await fetch(`${NEXTAUTH_URL}/api/leisure`, { method: 'GET' });
   const leisure_data = await LeisureResponse.json();
 
+
+  
   const leisureData1 = leisure_data.slice(0, 3);
   const leisureData2 = leisure_data.slice(3, 6);
   const leisureData3 = leisure_data.slice(6, 9);

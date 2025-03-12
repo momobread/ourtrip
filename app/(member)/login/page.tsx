@@ -5,7 +5,7 @@ import CustomForm from '@/app/_components/CustomForm';
 import CustomInput from '@/app/_components/CustomInput';
 import MemberButtons from '@/app/_components/Member/MemberButtons';
 
-const LoginFormStyle = `rounded-xl h-[60rem] absolute  flex w-[50rem] flex-col items-center border border-grey-400  justify-center gap-[2rem]`;
+const LoginFormStyle = `rounded-xl sm:h-[60rem] absolute  flex w-screen sm:w-[50rem] flex-col items-center sm:border sm:border-grey-400  justify-center gap-[2rem]`;
 
 const page = () => {
   return (

@@ -32,7 +32,10 @@ const page = async ({ params, searchParams }: PageProps) => {
     product_num,
     price: product_price,
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> release/1.0
   const date = { checkIn: (await searchParams)?.checkIn, checkOut: (await searchParams)?.checkOut };
   return (
     <>

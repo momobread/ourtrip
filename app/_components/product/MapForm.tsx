@@ -28,12 +28,14 @@ const MapForm = ({ formStyle, markers }: MapFormProps) => {
   };
 
   return (
-    <div className="flex h-[50rem] w-full justify-center">
-      <div className="flex w-[30%] flex-col items-center justify-center border-y border-l border-gray-400">
-        <div className="flex w-[90%] flex-col gap-[1rem] bg-slate-200">
-          <span className="text-[2.5rem]">{currentFilter}을 기준으로 숙소를 안내하고 있어요</span>
+    <div className="flex h-[50rem] w-full flex-col justify-center gap-[1rem] sm:h-[50rem] sm:flex-row sm:gap-0">
+      <div className="flex w-full flex-col items-center justify-center sm:w-[30%] sm:border-y sm:border-l sm:border-gray-400">
+        <div className="flex w-[90%] flex-col gap-[1rem] rounded-lg bg-slate-200 pb-[1rem]">
+          <span className="p-[1rem] text-[2.5rem]">
+            {currentFilter}을 기준으로 숙소를 안내하고 있어요
+          </span>
           <div>
-            <span>위치를 선택하여 주세요</span>
+            <span className="p-[1rem]">위치를 선택하여 주세요</span>
             <select onChange={(e) => handleChange(e)}>
               <option value={JSON.stringify({ lat: 37.5655, lng: 126.978, title: '서울' })}>
                 서울

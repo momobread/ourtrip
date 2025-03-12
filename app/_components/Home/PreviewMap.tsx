@@ -55,6 +55,10 @@ const PreviewMap = ({ markers }: PreviewMapProps) => {
         </select>
         <span className="text-[2rem]">을 기준으로 모텔을 안내하고 있어요</span>
       </div>
+      <div>
+        <span className="font-bold text-primary-200">마커</span>를 클릭하면 해당 숙소 정보로
+        이동합니다
+      </div>
       <CustomMap category="motel" markers={markers} center={location} formStyle={formStyle} />
       <div className="h-[4rem] text-[2.5rem] font-semibold">좀 더 다양한 숙소가 보고싶다면?</div>
     </div>

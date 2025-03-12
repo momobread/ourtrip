@@ -4,8 +4,7 @@ on:
   push:
     branches:
       - main #프로덕션 배포
-      - release
-
+      - release/1.0
 jobs:
   deploy:
     # if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/release/3.0.0' || github.ref == 'refs/heads/release/3.1.0' || github.ref == 'refs/heads/release/3.2.0'
@@ -30,5 +29,5 @@ jobs:
         uses: amondnet/vercel-action@v20
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-args: ${{ github.ref == 'refs/heads/main' && '--prod --yes' || github.ref == 'refs/heads/release' && '--yes' }}
+          vercel-args: ${{ github.ref == 'refs/heads/main' && '--prod --yes' || github.ref == 'refs/heads/release/1.0' && '--yes' }}
           working-directory: ./

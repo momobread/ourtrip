@@ -62,7 +62,10 @@ const page = async ({ searchParams }: pageProps) => {
       <main className="h-full w-full">
         <section className="h-full">
           <div className="mt-[1rem] flex flex-col items-center">
-            <MapForm formStyle={`w-[40%] h-[100%] border border-gray-400 `} markers={markers} />
+            <MapForm
+              formStyle={`sm:w-[40%] w-full h-[100%] border border-gray-400 rounded-xl sm:rounded-none `}
+              markers={markers}
+            />
             {/* 지도필터 먼저 띄우고, 서울을 기준으로 안내, 그리고 버튼 누르면 내위치 기준으로 안내 */}
             <div className="mt-[2rem] flex w-[100%] flex-col items-end">
               <ProductOptions />
