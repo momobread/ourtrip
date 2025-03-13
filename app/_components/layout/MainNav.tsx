@@ -102,7 +102,7 @@ const MainNav = () => {
             </span>
           </li>
         </Link>
-        <Link href="/activity">
+        {/* <Link href="/activity">
           <li className="group flex flex-col items-center justify-center p-[1rem] hover:rounded-lg hover:bg-white">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -125,7 +125,7 @@ const MainNav = () => {
               공연/축제
             </span>
           </li>
-        </Link>
+        </Link> */}
         {/* <Link href="/test">
           <li>dev</li>
         </Link> */}

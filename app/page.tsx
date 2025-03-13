@@ -17,7 +17,7 @@ export default async function Home({
 }: {
   searchParams: Promise<Record<string, string | undefined>>;
 }) {
-  const carouselImg = await axios.get(`${NEXTURL}/api/home/carousel`);
+  const carouselData = await axios.get(`${NEXTURL}/api/home/carousel`);
   const popularResponse = await axios.get(`${NEXTURL}/api/home/popular`);
   const popularData = popularResponse?.data;
 
@@ -25,9 +25,7 @@ export default async function Home({
   const best_hotel: PreImgProductType[] = popularData?.popular_accommodation?.best;
   const hot_hotel: PreImgProductType[] = popularData?.hot_hotel?.hot;
   const po_activity: PreImgProductType[] = popularData?.popular_activity?.activity;
-
   const filterLocation = (await searchParams).location ?? '서울';
-
   const productResponse = await axios.post(
     `${NEXTURL}/api/home/popular`,
     {
@@ -54,29 +52,55 @@ export default async function Home({
         <section className="h-full">
           <PreviewMap markers={markers} />
           <MainNav />
-          <Carousel Image={carouselImg?.data} />
+          <Carousel data={carouselData?.data} tag="home" />
           <PopularLocation
             title="인기 숙소 추천"
             render={best_hotel?.map((popular, i) => (
-              <PopularCard size="medium" img={popular.url} title={popular.title} key={i} href="" />
+              <PopularCard
+                size="medium"
+                img={popular.url}
+                title={popular.title}
+                key={i}
+                href={popular?.location}
+                tag="hotel"
+              />
             ))}
           />
           <PopularLocation
             title="hot한 호텔"
             render={hot_hotel?.map((popular, i) => (
-              <PopularCard size="medium" img={popular.url} title={popular.title} key={i} href="" />
+              <PopularCard
+                size="medium"
+                img={popular.url}
+                title={popular.title}
+                key={i}
+                href={popular.location}
+                tag="hotel"
+              />
             ))}
           />
           <PopularLocation
             title="인기있는 지역"
             render={po_location?.map((popular, i) => (
-              <PopularCard img={popular.url} title={popular.title} key={i} href="" />
+              <PopularCard
+                img={popular.url}
+                title={popular.title}
+                key={i}
+                href={popular.location}
+                tag="guest"
+              />
             ))}
           />
           <PopularLocation
             title="많이찾는 액티비티"
             render={po_activity?.map((popular, i) => (
-              <PopularCard img={popular.url} title={popular.title} key={i} href={'/leisure'} />
+              <PopularCard
+                img={popular.url}
+                title={popular.title}
+                key={i}
+                href={popular.location}
+                tag="activity"
+              />
             ))}
           />
           {/* <EventPrivew /> */}
