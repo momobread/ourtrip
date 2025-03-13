@@ -1,12 +1,15 @@
 'use client';
 // import Link from 'next/link';
 import { signIn, signOut, useSession } from 'next-auth/react';
+import { useState } from 'react';
 
+import CustomModal from '@/app/_components/CustomModal';
 import Tootip from '@/app/_components/Tootip';
 
 const UserNav = () => {
   const { data } = useSession();
   const user = data?.user;
+  const [isClick, setIsClick] = useState<boolean>(false);
 
   return (
     <div className="absolute right-0 top-0 h-[5rem] px-[1rem] hover:cursor-pointer">
@@ -42,7 +45,7 @@ const UserNav = () => {
             </Tootip>
           </li>
         )}
-        <li className="">
+        <li className="" onClick={() => setIsClick(true)}>
           <Tootip text="마이페이지">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +61,7 @@ const UserNav = () => {
             </svg>
           </Tootip>
         </li>
-        <li className="">
+        <li className="" onClick={() => setIsClick(true)}>
           <Tootip text="장바구니">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -71,6 +74,34 @@ const UserNav = () => {
           </Tootip>
         </li>
       </ul>
+      {isClick ? (
+        <CustomModal style="w-[40rem] h-[20rem] left-2/4 top-[15%] -translate-x-2/4 rounded-xl items-center justify-center">
+          <div className="flex h-[75%] flex-col items-center justify-center gap-[1rem]">
+            <span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-20 text-red-400"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4.5 12a7.5 7.5 0 0 0 15 0m-15 0a7.5 7.5 0 1 1 15 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077 1.41-.513m14.095-5.13 1.41-.513M5.106 17.785l1.15-.964m11.49-9.642 1.149-.964M7.501 19.795l.75-1.3m7.5-12.99.75-1.3m-6.063 16.658.26-1.477m2.605-14.772.26-1.477m0 17.726-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205 12 12m6.894 5.785-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495"
+                />
+              </svg>
+            </span>
+            <span className="text-[2rem]">로그인이 필요합니다!</span>
+          </div>
+          <button onClick={() => setIsClick(false)} className="h-[25%] w-full bg-primary-300">
+            닫기
+          </button>
+        </CustomModal>
+      ) : (
+        ''
+      )}
     </div>
   );
 };

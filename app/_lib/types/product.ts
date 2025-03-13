@@ -14,6 +14,12 @@ interface ProductType {
   PRODUCT_ROOMS: RoomType[];
 }
 
+interface CarouselType {
+  title: string;
+  url: string;
+  location: string;
+}
+
 interface RoomType {
   id: number;
   room_image: string;
@@ -24,6 +30,7 @@ interface RoomType {
 interface PreImgProductType {
   title: string;
   url: string;
+  location: string;
 }
 
 interface ProductAmenitiesType {
@@ -40,4 +47,4 @@ interface ProductAmenitiesType {
   amenity_barbarshop: boolean;
 }
 
-export type { ProductType, PreImgProductType, RoomType, ProductAmenitiesType };
+export type { ProductType, PreImgProductType, RoomType, ProductAmenitiesType, CarouselType };
