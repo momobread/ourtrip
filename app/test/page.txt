@@ -1,0 +1,32 @@
+// 'use client';
+
+// import axios from 'axios';
+// import { useEffect, useState } from 'react';
+// import { makeProductsBeta } from '../api/dev/route';
+
+// const Page = () => {
+//   const [test, setTest] = useState<boolean>(false);
+//   useEffect(() => {
+//     if (!test) return;
+
+//     async function fetch() {
+//       const response = await makeProductsBeta();
+//     }
+//     fetch();
+//     setTest(false);
+//   }, [test]);
+
+//   return (
+//     <button className="w-[30rme] bg-slate-500" onClick={() => setTest(true)}>
+//       만들기
+//     </button>
+//   );
+// };
+
+// export default Page;
+
+const page = () => {
+  return ;
+};
+
+export default page

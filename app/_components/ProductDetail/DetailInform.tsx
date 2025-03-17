@@ -45,24 +45,36 @@ const DetailInform = async ({ data, marker }: DetailInformProps) => {
   return (
     <div className="">
       <div className="flex flex-col items-center">
-        <div className="flex h-fit w-full flex-col gap-[0.5rem] sm:h-[55rem] sm:w-[64%] sm:flex-row sm:gap-[1%]">
-          <div className="relative h-[30rem] sm:h-full sm:w-[50%]">
-            <Image src={product_img} fill alt={`${product_num}`} className="rounded-xl" />
+        {PRODUCT_ROOMS?.length > 3 ? (
+          <div className="flex h-fit w-full flex-col gap-[0.5rem] sm:h-[55rem] sm:w-[64%] sm:flex-row sm:gap-[1%]">
+            <div className="relative h-[30rem] sm:h-full sm:w-[50%]">
+              <Image src={product_img} fill alt={`${product_num}`} className="rounded-xl" />
+            </div>
+            <ul className="flex flex-1 flex-col items-center justify-center gap-[0.5rem] bg-slate-200 sm:w-[50%] sm:flex-row sm:flex-wrap sm:gap-[2%]">
+              {PRODUCT_ROOMS?.map((room: RoomType) => (
+                <li
+                  className="relative h-[30rem] w-full sm:h-[49%] sm:w-[49%]"
+                  key={room.room_name}
+                >
+                  <Image
+                    src={room.room_image}
+                    fill
+                    alt={`${room.room_image}`}
+                    key={room.room_image}
+                    className="rounded-xl"
+                  />
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul className="flex flex-1 flex-col items-center justify-center gap-[0.5rem] bg-slate-200 sm:w-[50%] sm:flex-row sm:flex-wrap sm:gap-[2%]">
-            {PRODUCT_ROOMS?.map((room: RoomType) => (
-              <li className="relative h-[30rem] w-full sm:h-[49%] sm:w-[49%]" key={room.room_name}>
-                <Image
-                  src={room.room_image}
-                  fill
-                  alt={`${room.room_image}`}
-                  key={room.room_image}
-                  className="rounded-xl"
-                />
-              </li>
-            ))}
-          </ul>
-        </div>
+        ) : (
+          <div className="flex h-fit w-full flex-col gap-[0.5rem] sm:h-[55rem] sm:w-[64%] sm:flex-row sm:gap-[1%]">
+            <div className="relative h-[30rem] sm:h-full sm:w-full">
+              <Image src={product_img} fill alt={`${product_num}`} className="rounded-xl" />
+            </div>
+          </div>
+        )}
+
         <div className="relative my-[1rem] flex w-full flex-col gap-[1rem] px-[1rem] sm:w-[64%] sm:px-0">
           <SessionWrapper>
             <span className="text-[3.5rem] font-semibold">{product_name}</span>
