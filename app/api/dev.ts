@@ -184,3 +184,148 @@ export const makeProductsBeta = async () => {
 // );
 // };
 // export { makeProductsBeta, test };
+
+// export const makeProductsBeta2 = async () => {
+//   console.log(SUPABASE_URL, 'dsdsd');
+//   try {
+//     // eslint-disable-next-line
+//     const response = await axios.post(
+//       `${SUPABASE_URL}/rest/v1/PRODUCT_ROOMS`,
+//       [
+//         {
+//           room_image:
+//             'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img//room1.jpg',
+//           room_price: 103000,
+//           room_name: '베이직 룸',
+//           product_num: '10067',
+//         },
+//         {
+//           room_image:
+//             'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img//room2.png',
+//           room_price: 122000,
+//           room_name: '노멀 룸',
+//           product_num: '10067',
+//         },
+//         {
+//           room_image:
+//             'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img//room3.png',
+//           room_price: 160000,
+//           room_name: '럭셔리 룸',
+//           product_num: '10067',
+//         },
+//         {
+//           room_image:
+//             'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img//room4.png',
+//           room_price: 180000,
+//           room_name: '울트라 룸',
+//           product_num: '10067',
+//         },
+//         ,
+//         //
+//         //
+//         {
+//           room_image:
+//             'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img//room1.jpg',
+//           room_price: 103000,
+//           room_name: '베이직 룸',
+//           product_num: '10068',
+//         },
+//         {
+//           room_image:
+//             'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img//room2.png',
+//           room_price: 122000,
+//           room_name: '노멀 룸',
+//           product_num: '10068',
+//         },
+//         {
+//           room_image:
+//             'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img//room3.png',
+//           room_price: 160000,
+//           room_name: '럭셔리 룸',
+//           product_num: '10068',
+//         },
+//         {
+//           room_image:
+//             'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img//room4.png',
+//           room_price: 180000,
+//           room_name: '울트라 룸',
+//           product_num: '10068',
+//         },
+//         ,
+//         //
+//         //
+//         {
+//           room_image:
+//             'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img//room1.jpg',
+//           room_price: 103000,
+//           room_name: '베이직 룸',
+//           product_num: '10069',
+//         },
+//         {
+//           room_image:
+//             'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img//room2.png',
+//           room_price: 122000,
+//           room_name: '노멀 룸',
+//           product_num: '10069',
+//         },
+//         {
+//           room_image:
+//             'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img//room3.png',
+//           room_price: 160000,
+//           room_name: '럭셔리 룸',
+//           product_num: '10069',
+//         },
+//         {
+//           room_image:
+//             'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img//room4.png',
+//           room_price: 180000,
+//           room_name: '울트라 룸',
+//           product_num: '10069',
+//         },
+//         ,
+//         //
+//         //
+//         {
+//           room_image:
+//             'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img//room1.jpg',
+//           room_price: 103000,
+//           room_name: '베이직 룸',
+//           product_num: '10070',
+//         },
+//         {
+//           room_image:
+//             'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img//room2.png',
+//           room_price: 122000,
+//           room_name: '노멀 룸',
+//           product_num: '10070',
+//         },
+//         {
+//           room_image:
+//             'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img//room3.png',
+//           room_price: 160000,
+//           room_name: '럭셔리 룸',
+//           product_num: '10070',
+//         },
+//         {
+//           room_image:
+//             'https://zmuwonipjizutjtllmoq.supabase.co/storage/v1/object/public/preview_img//room4.png',
+//           room_price: 180000,
+//           room_name: '울트라 룸',
+//           product_num: '10070',
+//         },
+//         //
+//         //
+//       ],
+//       {
+//         headers: {
+//           apikey: SUPABASE_KEY,
+//           Authorization: `Bearer ${SUPABASE_KEY}`,
+//           'Content-Type': 'application/json',
+//         },
+//       }
+//     );
+//     return;
+//   } catch (e) {
+//     console.log(e);
+//   }
+// };
