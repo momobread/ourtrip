@@ -24,7 +24,9 @@ function ReviewModal({ data, onClick, product_num, flag }: ReviewModalProps) {
       return;
     }
     setIsLoading(true);
-    if (!flag) {
+    console.log(flag);
+    // if (!flag) {
+    if (flag) { //이부분 flag가 다 같은부분을 바라보고 있어서 수정 필요함
       router.replace(`/review/post/${product_num}`);
     } else {
       //재진행
